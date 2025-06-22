@@ -9,7 +9,7 @@
 ### Getting Covers
 
 - ``Manga/cover``
-- ``MangaDexAPIClientgetCover(_:)``
+- ``MangaDexAPIClient/getCover(_:)``
 - ``MangaDexAPIClient/getCovers(coverIDs:limit:offset:)``
 
 ### Getting all Covers for a Manga

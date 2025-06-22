@@ -8,7 +8,8 @@
 
 ### Getting Manga
 
-- ``MangaDexAPIClient/getManga(_:)``
+- ``MangaDexAPIClient/getManga(_:)->Result<Manga,Error>``
+- ``MangaDexAPIClient/getManga(_:)-46lz8``
 - ``MangaDexAPIClient/getManga(_:limit:offset:)``
 - ``MangaDexAPIClient/getRandomManga()``
 
@@ -43,7 +44,7 @@
 
 ### Getting Statisics
 
-- ``MangaDexAPIClient/getStatistics(for:)-52hb`
+- ``MangaDexAPIClient/getStatistics(for:)-52hb``
 - ``MangaDexAPIClient/getStatisics(for:)``
 
 ### Getting Available Tags
@@ -68,9 +69,6 @@
 
 - ``Manga/availableTranslatedLanguages``
 
-### Storing a Manga
-
-- ``StoredManga/init(from:readingStatus:insertAt:)``
 
 ### Appears in
 

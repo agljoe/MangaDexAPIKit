@@ -22,7 +22,7 @@ extension Statistics {
     }
 }
 
-extension Statistics {
+public extension Statistics {
     /// A link to the MangaDexForums thread,, nil if no thread exists.
     var commentsURL: URL? {
         if let id = threadId {
@@ -37,14 +37,14 @@ extension Statistics {
 
 /// Similar to the generic wrapper struct, all JSON data returned from the
 /// statistics endpoints have a first key of "statistics".
-struct StatisticsWrapper<T: Statistics>: Decodable {
+public struct StatisticsWrapper<T: Statistics>: Decodable {
     /// The Statistics found in this wrapper.
-    let statistics: T
+    public let statistics: T
 }
 
 /// Similar to the generic wrapper struct, all JSON data returned from the
 /// statistics endpoints have a first key of "statistics".
-struct GroupedStatisticsWrapper<T: Statistics>: Decodable {
+public struct GroupedStatisticsWrapper<T: Statistics>: Decodable {
     /// The grouped Statistics found in this wrapper.
-    let statistics: [String: T]
+    public let statistics: [String: T]
 }

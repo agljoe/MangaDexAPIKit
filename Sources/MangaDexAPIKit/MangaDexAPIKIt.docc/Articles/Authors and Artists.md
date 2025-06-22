@@ -11,5 +11,5 @@ When interacting with the MangaDexAPI authors and aritists are considered virtua
 ### Types
 
 - ``Author``
-- ``AuthorRelationShip``
-- ``AuthorRelationShipType``
+- ``AuthorRelationship``
+- ``AuthorRelationshipType``

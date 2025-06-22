@@ -31,10 +31,8 @@ Authenicated requests must be made using OAuth 2.0 protcols as state [here](http
 - ``Credentials``
 - ``Token``
 
-### Removing Users from the Keychain
-- ``resetCredentials()``
-- ``resetKeychain()``
-
+### Managing Sensitive Data
+- 
 ### Authenticated Requests
 
 - ``LoginRequest``
@@ -53,5 +51,4 @@ Authenicated requests must be made using OAuth 2.0 protcols as state [here](http
 - ``MangaDexAPIError``
 - ``MangaDexAPIErrorResponse``
 - ``AuthenticationError``
-- ``mapError(_:context:)``
 

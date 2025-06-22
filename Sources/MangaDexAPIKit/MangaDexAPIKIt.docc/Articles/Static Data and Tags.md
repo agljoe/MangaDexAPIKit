@@ -26,7 +26,6 @@ For more information the official developer reference can be found [here](https:
 - ``ReadingStatus``
 - ``Rating``
 - ``Tag``
-- ``StoredTag``
 
 ### Related Object Types
 

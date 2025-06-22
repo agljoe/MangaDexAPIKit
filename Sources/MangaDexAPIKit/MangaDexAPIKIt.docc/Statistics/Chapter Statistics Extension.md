@@ -12,8 +12,8 @@ A chapter's statisics simply contains an ID for its comments thread. Most chapte
 
 ### Getting the Statisics for a Chapter
 
-- ``MangaDexAPIRequestManager/getStatistics(for:)->ChapterStatistics``
-- ``MangaDexAPIRequestManager/getStatistics(for:)->[String:ChapterStatistics]``
+- ``MangaDexAPIClient/getStatistics(for:)->Result<ChapterStatistics,Error>``
+- ``MangaDexAPIClient/getStatistics(for:)-8nb0t``
 
 ### Contructing a Thread URL
 

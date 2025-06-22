@@ -15,6 +15,6 @@ In order to reduce server load MangaDex supplies reference expansions at certain
 
 ### Relationships
 
-- ``AuthorRelationShip``
+- ``AuthorRelationship``
 - ``AuthorRelationshipType``
 - ``ChapterRelationship``
