@@ -20,7 +20,7 @@ internal struct ChapterImageEntity: MangaDexAPIEntity {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/at-home/server/\(id.uuidString.lowercased())"
         
         if UserDefaults.standard.bool(forKey: "shouldForcePort433") {

@@ -23,7 +23,7 @@ public extension Array where Element == ChapterReferenceExpansion {
     /// All available reference expansions at a /chapter endpoint.
     static var all: Self { ChapterReferenceExpansion.allCases }
     
-    /// Indicates that references will not be expanded.
+    /// Indicates that a chapter's references will not be expanded.
     static var none: Self { [] }
 }
 
@@ -39,7 +39,7 @@ struct ChapterEntity: MangaDexAPIEntity, Expandable {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/chapter/\(id.uuidString.lowercased())"
         components.queryItems = expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)

@@ -30,13 +30,16 @@ Authenicated requests must be made using OAuth 2.0 protcols as state [here](http
 
 - ``Credentials``
 - ``Token``
+- ``TokenType``
 
 ### Managing Sensitive Data
-- 
+
+- ``KeychainManager``
+
 ### Authenticated Requests
 
 - ``LoginRequest``
-- ``ReAuthenticationRequest``
+- ``ReauthenticationRequest``
 - ``CheckIfMangaIsFollowedRequest``
 - ``Follow``
 - ``Unfollow``
@@ -51,4 +54,5 @@ Authenicated requests must be made using OAuth 2.0 protcols as state [here](http
 - ``MangaDexAPIError``
 - ``MangaDexAPIErrorResponse``
 - ``AuthenticationError``
+- ``handleDecodingError(_:)``
 

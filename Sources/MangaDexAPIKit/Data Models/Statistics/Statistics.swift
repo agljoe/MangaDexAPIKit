@@ -27,7 +27,7 @@ public extension Statistics {
     var commentsURL: URL? {
         if let id = threadId {
             var components = URLComponents()
-            components.host = Server.forums.rawValue
+            components.host = MangaDexAPIBaseURL.forums.rawValue
             components.path = "\(id)"
             return components.url
         }

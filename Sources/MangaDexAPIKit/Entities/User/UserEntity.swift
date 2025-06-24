@@ -17,7 +17,7 @@ struct UserEntity: MangaDexAPIEntity {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/user/\(id.uuidString.lowercased())"
         return components.url!
     }

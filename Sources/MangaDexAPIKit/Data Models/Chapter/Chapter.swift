@@ -122,4 +122,20 @@ public struct Chapter: Decodable, Identifiable, Sendable {
     public static func == (lhs: Chapter, rhs: Chapter) -> Bool {
         return lhs.id == rhs.id && lhs.updatedAt == rhs.updatedAt
     }
+    
+    /// Constructs a complete title for a chapter of a specfic manga.
+    ///
+    /// For example the formated full title for chapter one of Tokyo Ghoul would be`Vol. 1 Ch. 5 - Coffee`.
+    public var fullTitle: String {
+        if let volume = self.volume {
+            return "Vol. \(volume) Ch. \(self.chapter ?? "0") \(self.title != nil && self.title != "" ? "- \(self.title!)" : "")"
+        } else { return "Ch. \(self.chapter ?? "0") \(self.title != nil ? "- \(self.title!)" : "")" }
+    }
+    
+    /// The title of this chapter formated for presentation when grouped by its volume.
+    ///
+    /// For example the formated title for chapter one of The Rising of the Sheild Hero would be `Ch.1 - A Royal Summons`.
+    public var volumeListTitle: String {
+        "Ch. \(self.chapter ?? "0") \(self.title != nil && self.title != "" ? "- \(self.title!)" : "")"
+    }
 }

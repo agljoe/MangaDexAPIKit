@@ -13,7 +13,7 @@ import Foundation
 ///
 /// - Note: Followed manga are implicitely added to a user's library, any manga with a reading status is considered
 ///         part the library
-struct Follow {
+public struct Follow: MangaDexAPIRequest {
     /// The UUID of the manga to follow.
     let manga: UUID
     
@@ -27,7 +27,7 @@ struct Follow {
     }
 }
 
-extension Follow: MangaDexAPIRequest {
+public extension Follow {
     typealias ModelType = Response
     
     func decode(_ data: Data) throws -> Response {
@@ -37,7 +37,7 @@ extension Follow: MangaDexAPIRequest {
     func execute() async throws -> Response {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/\(manga.uuidString.lowercased())/follow"
         
         return try await authenticatedGet(from: components.url!)
@@ -48,7 +48,7 @@ extension Follow: MangaDexAPIRequest {
 ///
 /// - Note: Unfollowing a manga will not remove it from a user's library, in order to do so a manga's reading status
 ///         must be set to none
-struct Unfollow {
+public struct Unfollow: MangaDexAPIRequest  {
     /// The UUID of the manga to unfollow.
     let manga: UUID
     
@@ -62,7 +62,7 @@ struct Unfollow {
     }
 }
 
-extension Unfollow: MangaDexAPIRequest {
+public extension Unfollow {
     typealias ModelType = Response
     
     func decode(_ data: Data) throws -> Response {
@@ -72,7 +72,7 @@ extension Unfollow: MangaDexAPIRequest {
     func execute() async throws -> Response {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/\(manga.uuidString.lowercased())/follow"
         
         return try await authenticatedDelete(at: components.url!)

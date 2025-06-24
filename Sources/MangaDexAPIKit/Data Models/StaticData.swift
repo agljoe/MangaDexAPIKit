@@ -819,9 +819,9 @@ public enum Order: String {
 
 /// The available base URLs for making calls to the MangaDexAPI.
 @frozen
-public enum Server: String {
+public enum MangaDexAPIBaseURL: String {
     /// The base URL of almost every endpoint, use this unless expliciity stated otherwise.
-    case standard = "api.mangadex.org"
+    case org = "api.mangadex.org"
     
     /// This base URL is only to be used for reporting the sucess or failiure of fetching chapter images.
     case network = "api.mangadex.network"
@@ -829,7 +829,7 @@ public enum Server: String {
     /// This base URL is only used for initial authentication to obtain a users OAuth token.
     ///
     /// - Important: Do not use this URL of OAuth authenticated API calls, authenticated requests should be done with the
-    ///              with the ``Server/standard`` base url and pass the access token in the requests authorization header.
+    ///              with the `MangaDexAPIBaseURL.org` case and pass the access token in the requests authorization header.
     case auth = "auth.mangadex.org"
     
     /// The base URL for any comments thread.
@@ -839,7 +839,7 @@ public enum Server: String {
     ///
     /// ### See
     /// [Retrieving Covers](https://api.mangadex.org/docs/03-manga/covers/)
-    case cover = "uploads.mangadex.org"
+    case uploads = "uploads.mangadex.org"
 }
 
 /// The logical operator for how tags will be included in a search query.

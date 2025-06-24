@@ -24,6 +24,10 @@
 
 - ``Cover/==(_:_:)``
 
+### Required for Decoding
+
+- ``CoverRelationship``
+
 ### Appears in
 
 - ``Manga/cover``

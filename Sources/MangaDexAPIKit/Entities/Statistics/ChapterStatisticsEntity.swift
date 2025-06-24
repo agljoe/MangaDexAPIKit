@@ -19,7 +19,7 @@ internal struct ChapterStatisticsEntity: MangaDexAPIEntity {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.scheme = Server.standard.rawValue
+        components.scheme = MangaDexAPIBaseURL.org.rawValue
         components.path = "/statistics/chapter/\(id.uuidString.lowercased())"
         return components.url!
     }

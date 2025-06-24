@@ -65,10 +65,13 @@
 
 - ``Manga/altTitles``
 
+### Array Utility for AltTitles
+
+- ``Swift/Array/flattenAltTitles()``
+
 ### Finding Translations
 
 - ``Manga/availableTranslatedLanguages``
-
 
 ### Appears in
 

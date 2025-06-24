@@ -11,7 +11,7 @@ import Foundation
 ///
 /// - Important: This entity has a custom request type, passing it with the generic request type
 ///              will leading to a decoding error.
-struct LoginRequest: MangaDexAPIRequest {
+public struct LoginRequest: MangaDexAPIRequest {
     /// The credentials of the user logging in.
     ///
     /// A users credentials inclues thier username, password, client id, and client secret.
@@ -38,14 +38,18 @@ struct LoginRequest: MangaDexAPIRequest {
     ///
     /// - Throws: `AuthenticationError.invalidCredentials` if a users credentials cannot be properly encoded, or passed to the MangaDex API.
     private func login(with credentials: Credentials) async throws {
-        guard let content = "grant_type=password&username=\(credentials.username)&password=\(credentials.password)&client_id=\(credentials.client_id)&client_secret=\(credentials.client_secret)".data(using: .utf8) else { throw AuthenticationError.invalidCredentials }
+        guard let content = "grant_type=password&username=\(credentials.username)&password=\(credentials.password)&client_id=\(credentials.client_id)&client_secret=\(credentials.client_secret)".data(using: .utf8) else {
+            throw AuthenticationError.invalidCredentials
+        }
         
         let data = try await post(at: entity.url, forContentType: "application/x-www-form-urlencoded", with: content)
         let token = try decode(data)
         try KeychainManager.store(credentials: credentials)
         try KeychainManager.store(token: token, for: credentials.username)
     }
-    
+}
+
+public extension LoginRequest {
     typealias ModelType = Token
     
     func decode(_ data: Data) throws -> Token {

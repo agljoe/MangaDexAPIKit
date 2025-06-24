@@ -8,7 +8,7 @@
 
 ### Getting the Statisics for a Manga
 
-- ``MangaDexAPIClient/getStatistics(for:)``
+- ``MangaDexAPIClient/getStatistics(for:)->Result<MangaStatistics,Error>``
 - ``MangaDexAPIClient/getStatisics(for:)``
 
 ### Contructing a Thread URL
@@ -18,5 +18,5 @@
 ### Appears in
 
 - ``MangaStatisticsRequest``
-- ``GroupedMangaStatisticsRequest11
+- ``GroupedMangaStatisticsRequest``
 

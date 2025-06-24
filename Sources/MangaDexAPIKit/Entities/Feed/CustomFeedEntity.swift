@@ -49,7 +49,7 @@ struct CustomFeedEntity: MangaDexAPIEntity, Expandable {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "list/\(id.uuidString.lowercased())/feed"
         
         components.queryItems = [

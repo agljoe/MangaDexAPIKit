@@ -11,20 +11,20 @@ import Foundation
 ///
 /// Due to the way this specifc endpoint works the execute fuction will return false if an error was thrown
 /// and the decode method will always return true.
-struct CheckIfMangaIsFollowedRequest: MangaDexAPIRequest {
+public struct CheckIfMangaIsFollowedRequest: MangaDexAPIRequest {
     /// The UUID of the manga whose follow status is being checked.
     let id: UUID
     
-    typealias ModelType = Bool
+    public typealias ModelType = Bool
     
-    func decode(_ data: Data) throws -> Bool {
+    public func decode(_ data: Data) throws -> Bool {
         return true
     }
     
-    func execute() async throws -> Bool {
+    public func execute() async throws -> Bool {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/user/follows/manga/\(id.uuidString.lowercased())"
     
         do {

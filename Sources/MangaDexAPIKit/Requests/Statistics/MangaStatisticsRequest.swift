@@ -8,7 +8,7 @@
 import Foundation
 
 /// A request that returns the statistics for a specific manga
-public struct MangaStatisticsRequest {
+public struct MangaStatisticsRequest: MangaDexAPIRequest {
     /// The entity whose statistics are being retieved.
     fileprivate let entity: MangaStatisticsEntity
     
@@ -25,14 +25,14 @@ public struct MangaStatisticsRequest {
     }
 }
 
-extension MangaStatisticsRequest: MangaDexAPIRequest {
-    public typealias ModelType = MangaStatistics
+public extension MangaStatisticsRequest {
+    typealias ModelType = MangaStatistics
     
-    public func decode(_ data: Data) throws -> MangaStatistics {
+    func decode(_ data: Data) throws -> MangaStatistics {
         return try JSONDecoder().decode(StatisticsWrapper<MangaStatistics>.self, from: data).statistics
     }
     
-    public func execute() async throws -> MangaStatistics {
+    func execute() async throws -> MangaStatistics {
         return try await get(from: entity.url)
     }
 }
@@ -41,7 +41,7 @@ extension MangaStatisticsRequest: MangaDexAPIRequest {
 /// A request that returns the statistics of multiple manga.
 ///
 /// Grouped statistics are stored as a dictionary with the key being the UUID of the manga for each value respectively.
-struct GroupedMangaStatisticsRequest {
+public struct GroupedMangaStatisticsRequest: MangaDexAPIRequest {
     /// The entity whose statistics are being retrieved.
     fileprivate let entity: GroupedMangaStatisticsEntity
     
@@ -64,7 +64,7 @@ struct GroupedMangaStatisticsRequest {
     }
 }
 
-extension GroupedMangaStatisticsRequest: MangaDexAPIRequest {
+public extension GroupedMangaStatisticsRequest {
     typealias ModelType = [String: MangaStatistics]
     
     func decode(_ data: Data) throws -> [String : MangaStatistics] {

@@ -14,7 +14,7 @@ struct TokenEntity: MangaDexAPIEntity {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.auth.rawValue
+        components.host = MangaDexAPIBaseURL.auth.rawValue
         components.path = "/realms/mangadex/protocol/openid-connect/token"
         return components.url!
     }

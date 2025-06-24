@@ -187,4 +187,39 @@ public struct Manga: Decodable, Equatable, Hashable, Identifiable, Sendable {
     public static func == (lhs: Manga, rhs: Manga) -> Bool {
          return lhs.id == rhs.id && lhs.updatedAt == rhs.updatedAt
      }
+    
+    /// Returns the URL this updata's cover is found at.
+    ///
+    /// The URL for a lower quality cover image will be returned if data saver mode is enabled.
+    public var coverURL: URL {
+        var compontents = URLComponents()
+        compontents.scheme = "https"
+        compontents.host = MangaDexAPIBaseURL.uploads.rawValue
+        // TODO: add option for full quality
+        compontents.path = "/covers/\(self.id.uuidString.lowercased())/\(self.cover.fileName).\(UserDefaults.standard.bool(forKey: "dataSaver") ? "256" : "512").jpg"
+        return compontents.url!
+    }
+    
+    /// Returns the appropriate title of a manga based on a users language preferneces.
+    ///
+    /// This variable can return and empty string, but there should be no cases in which this occurs.
+    public var localizedTitle: String {
+        // TODO: get title in users prefered language if available and is wanted
+        if let title = self.title[self.title.keys.first ?? "en"] { return title }
+        if let alternateEnglishTitle = self.altTitles.first(where: { $0.keys.contains("en") })?.values.first { return alternateEnglishTitle }
+        if let romanizedTitle = self.altTitles.first(where: { $0.keys.contains("\(self.originalLanguage)-ro") })?.values.first { return romanizedTitle }
+        return ""
+    }
+    
+    /// Returns either the first alternate English title, or original language title of a manga if they exist.
+    public var alternateTitle: String {
+        if let alternateEnglishTitle = self.altTitles.first(where: { $0.keys.contains("en") })?.values.first { return alternateEnglishTitle }
+        if let originalTitle = self.altTitles.first(where: { $0.keys.contains(self.originalLanguage) })?.values.first { return originalTitle }
+        return ""
+    }
+    
+    /// The URL for this manga at mangadex.org
+    public var openUrl: URL {
+        URL(string: "https://mangadex.org/title/\(id.uuidString.lowercased())")!
+    }
 }

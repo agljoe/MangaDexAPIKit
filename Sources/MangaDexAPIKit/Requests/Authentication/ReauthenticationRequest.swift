@@ -9,9 +9,9 @@ import Foundation
 
 /// A request that fetches a new access token for a user.
 ///
-/// This type of request should only be made if an authenticated request fails with error code 401 as  to avoid
+/// This type of request should only be made if an authenticated request fails with error code 401 to avoid
 /// wasting calls and bandwidth trying to refresh tokens every fifteen minutes.
-struct ReauthenticationRequest: MangaDexAPIRequest {
+public struct ReauthenticationRequest: MangaDexAPIRequest {
     /// Fetches an entity that is virtually identical to the one returned by a login request,
     /// thus the `TokenEntity` type can be reused here.
     ///
@@ -45,7 +45,9 @@ struct ReauthenticationRequest: MangaDexAPIRequest {
         let result = try decode(data)
         try KeychainManager.update(token: result.access, .access, for: credentials.username)
     }
-    
+}
+
+public extension ReauthenticationRequest {
     typealias ModelType = Token
     
     func decode(_ data: Data) throws -> Token {

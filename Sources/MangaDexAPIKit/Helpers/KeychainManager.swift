@@ -64,7 +64,7 @@ public actor KeychainManager {
         let passwordQuery: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
             kSecAttrAccount as String: credentials.username,
-            kSecAttrServer as String: "\(Server.standard.rawValue)/\(credentials.username)",
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.org.rawValue)/\(credentials.username)",
             kSecValueData as String: password
         ]
         
@@ -77,7 +77,7 @@ public actor KeychainManager {
         let secretQuery: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
             kSecAttrAccount as String: credentials.client_id,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(credentials.username)",
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(credentials.username)",
             kSecValueData as String: secret
         ]
         
@@ -104,7 +104,7 @@ public actor KeychainManager {
         let accessQuery: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
             kSecAttrAccount as String: "\(user)/\(access)",
-            kSecAttrServer as String: "\(Server.auth.rawValue)/access",
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/access",
             kSecValueData as String: access
         ]
         
@@ -120,7 +120,7 @@ public actor KeychainManager {
             let refreshQuery: [String: Any] = [
                 kSecClass as String: kSecClassInternetPassword,
                 kSecAttrAccount as String: "\(user)/\(refresh)",
-                kSecAttrServer as String: "\(Server.auth.rawValue)/refresh",
+                kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/refresh",
                 kSecValueData as String: refresh
             ]
             
@@ -142,7 +142,7 @@ public actor KeychainManager {
     internal static func get(credentials user: String) throws -> Credentials {
         let passwordQuery: [String: Any] =  [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.standard.rawValue)/\(user)",
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.org.rawValue)/\(user)",
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnAttributes as String: true,
             kSecReturnData as String: true
@@ -161,7 +161,7 @@ public actor KeychainManager {
         
         let secretQuery: [String: Any] =  [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(user)",
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(user)",
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnAttributes as String: true,
             kSecReturnData as String: true
@@ -193,7 +193,7 @@ public actor KeychainManager {
     internal static func getToken(_ type: TokenType) throws -> String {
         let query: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(type.rawValue)",
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(type.rawValue)",
             kSecMatchLimit as String: kSecMatchLimitOne,
             kSecReturnAttributes as String: true,
             kSecReturnData as String: true
@@ -226,7 +226,7 @@ public actor KeychainManager {
     internal static func update(token: String, _ type: TokenType, for account: String) throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(type.rawValue)",
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(type.rawValue)",
         ]
         
         guard let token = token.data(using: String.Encoding.utf8) else { throw KeychainError.unexpecetedTokenData }
@@ -251,7 +251,7 @@ public actor KeychainManager {
         
         let passwordQuery: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(user)"
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(user)"
         ]
         
         let passwordStatus = SecItemDelete(passwordQuery as CFDictionary)
@@ -259,7 +259,7 @@ public actor KeychainManager {
         
         let secretQuery: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(user)"
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(user)"
         ]
             
         let secretStatus = SecItemDelete(secretQuery as CFDictionary)
@@ -267,7 +267,7 @@ public actor KeychainManager {
         
         let accessQuery: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(TokenType.access.rawValue)"
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(TokenType.access.rawValue)"
         
         ]
         
@@ -276,7 +276,7 @@ public actor KeychainManager {
         
         let refreshQuery: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
-            kSecAttrServer as String: "\(Server.auth.rawValue)/\(TokenType.refresh.rawValue)"
+            kSecAttrServer as String: "\(MangaDexAPIBaseURL.auth.rawValue)/\(TokenType.refresh.rawValue)"
         ]
         
         let refreshStatus = SecItemDelete(refreshQuery as CFDictionary)

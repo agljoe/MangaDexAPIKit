@@ -8,7 +8,7 @@
 import Foundation
 
 /// A group of chapters whose read markers are being updated.
-public struct ReadMarkerUpdate: Encodable, Sendable {
+struct ReadMarkerUpdate: Encodable, Sendable {
     /// The UUID of the manga the given chapters belong to.
     let mangaID: UUID
     
@@ -76,7 +76,7 @@ extension ReadMarkerUpdate {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/\(mangaID.uuidString.lowercased())/read"
         //components.queryItems = [URLQueryItem(name: "updateHisttory", value: "\(true)")] -> i think this functionality is not available yet
         return components.url!

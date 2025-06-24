@@ -18,7 +18,7 @@ internal struct ReadMarkerEntity: MangaDexAPIEntity {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/\(id.uuidString.lowercased())/read"
         return components.url!
     }

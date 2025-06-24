@@ -21,7 +21,7 @@ struct ReadMarkerGroupEntity: MangaDexAPIEntity {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/read"
         components.queryItems = ids.map { URLQueryItem(name: "ids[]", value: $0.uuidString.lowercased()) }
         components.queryItems?.append(URLQueryItem(name: "grouped", value: "\(true)"))

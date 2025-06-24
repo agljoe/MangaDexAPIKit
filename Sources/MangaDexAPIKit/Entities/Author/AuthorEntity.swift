@@ -17,7 +17,7 @@ public extension Array where Element == AuthorReferenceExpansion {
     /// All available reference expansions at a /author endpoint.
     static var all: Self { AuthorReferenceExpansion.allCases }
     
-    /// Indicates that references will not be expanded.
+    /// Indicates that an author's references will not be expanded.
     static var none: Self { [] }
 }
 
@@ -35,7 +35,7 @@ struct AuthorEntity: MangaDexAPIEntity, Expandable {
     var url: URL {
         var compontents = URLComponents()
         compontents.scheme = "https"
-        compontents.host = "api.mangadex.org"
+        compontents.host = MangaDexAPIBaseURL.org.rawValue
         compontents.path = "/author/\(id.uuidString.lowercased())"
         compontents.queryItems = expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)

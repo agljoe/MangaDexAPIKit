@@ -34,7 +34,7 @@ public extension Array where Element == MangaReferenceExpansion {
     /// All available reference expansions at a /cover endpoint.
     static var all: Self { MangaReferenceExpansion.allCases }
     
-    /// All available reference expansions at a /chapter endpoint.
+    /// Indicates that a manga's references will not be expanded.
     static var none: Self { [] }
 }
 
@@ -50,7 +50,7 @@ struct MangaEntity: MangaDexAPIEntity, Expandable {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "api.mangadex.org"
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/\(id.uuidString.lowercased())"
         components.queryItems = expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)

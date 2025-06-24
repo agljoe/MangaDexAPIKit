@@ -8,7 +8,7 @@
 import Foundation
 
 /// Updates a manga's reading status on MangaDex servers.
-public struct UpdateMangaReadingStatusRequest {
+public struct UpdateMangaReadingStatusRequest: MangaDexAPIRequest {
     /// The reading status update to pass in this request's body.
     fileprivate let status: ReadingStatusUpdate
     
@@ -25,14 +25,14 @@ public struct UpdateMangaReadingStatusRequest {
     }
 }
 
-extension UpdateMangaReadingStatusRequest: MangaDexAPIRequest {
-    public typealias ModelType = Response
+public extension UpdateMangaReadingStatusRequest {
+    typealias ModelType = Response
     
-    public func decode(_ data: Data) throws -> Response {
+    func decode(_ data: Data) throws -> Response {
         return Response(result: "ok")
     }
     
-    public func execute() async throws -> Response {
+    func execute() async throws -> Response {
         let body = try JSONEncoder().encode(status)
         try await authenticatedPost(at: status.url, with: body)
         return try decode(Data())

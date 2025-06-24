@@ -8,7 +8,7 @@
 import Foundation
 
 /// A request to update the read marker a manga's chapters on MangaDex servers.
-struct UpdateReadMarkerRequest {
+public struct UpdateReadMarkerRequest: MangaDexAPIRequest {
     /// The markers being updated.
     let markers: ReadMarkerUpdate
     
@@ -54,7 +54,7 @@ struct UpdateReadMarkerRequest {
 }
 
 
-extension UpdateReadMarkerRequest: MangaDexAPIRequest {
+public extension UpdateReadMarkerRequest {
     typealias ModelType = Response?
     
     func decode(_ data: Data) throws -> Response? {

@@ -16,11 +16,11 @@ public enum ScanlationGroupReferenceExpansion: String, ReferenceExpansion {
     case member = "member"
 }
 
-extension Array where Element == ScanlationGroupReferenceExpansion {
+public extension Array where Element == ScanlationGroupReferenceExpansion {
     /// All available reference expansions at a /group endpoint.
     static var all: Self { ScanlationGroupReferenceExpansion.allCases }
     
-    /// All available reference expansions at a /chapter endpoint.
+    /// Indicates that a scanlation group's references will not be expanded.
     static var none: Self { [] }
 }
 
@@ -36,7 +36,7 @@ struct ScanlationGroupEntity: MangaDexAPIEntity, Expandable {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/group/\(id.uuidString.lowercased())/"
         
         components.queryItems = expansions.map {

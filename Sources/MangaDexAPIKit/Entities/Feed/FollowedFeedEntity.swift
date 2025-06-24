@@ -43,7 +43,7 @@ struct FollowedFeedEntity: MangaDexAPIEntity, Expandable {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/user/follows/manga/feed"
         
         components.queryItems = [
@@ -71,8 +71,8 @@ struct FollowedFeedEntity: MangaDexAPIEntity, Expandable {
             })
         }
         
-        if let contentRating = UserDefaults.standard.object(forKey: "contentRating") as? Rating {
-            components.queryItems?.append(contentsOf: contentRating.value)
+        if let contentRating = UserDefaults.standard.string(forKey: "contentRating") {
+            components.queryItems?.append(contentsOf: Rating(rawValue: contentRating)?.value ?? Rating.safe.value)
         }
         
         if let excludedGroups = UserDefaults.standard.array(forKey: "excludedGroups") as? [String] {
@@ -83,15 +83,20 @@ struct FollowedFeedEntity: MangaDexAPIEntity, Expandable {
         
         if let excludedUploades = UserDefaults.standard.array(forKey: "excludedUploaders") as? [String] {
             components.queryItems?.append(contentsOf: excludedUploades.map {
-                URLQueryItem(name: "excludingUploaders[]", value: $0)
+                URLQueryItem(name: "excludedUploaders[]", value: $0)
             })
         }
         
-        components.queryItems?.append( URLQueryItem(name: "order[publishAt]", value: Order.desc.rawValue))
+        components.queryItems?.append(contentsOf: [
+            URLQueryItem(name: "order[publishAt]", value: Order.desc.rawValue),
+            URLQueryItem(name: "order[chapter]", value: Order.desc.rawValue)
+        ])
         
         components.queryItems?.append(contentsOf: expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)
         })
+        
+        print(components.url!)
         
         return components.url!
     }

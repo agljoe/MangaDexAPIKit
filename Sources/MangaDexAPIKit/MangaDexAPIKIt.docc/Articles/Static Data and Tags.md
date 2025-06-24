@@ -17,7 +17,7 @@ For more information the official developer reference can be found [here](https:
 
 ### Links
 
-``MangaLink``
+- ``MangaLink``
 
 ### Indentifiers and Categories
 
@@ -40,4 +40,4 @@ For more information the official developer reference can be found [here](https:
 
 ### Servers
 
-- ``Server``
+- ``MangaDexAPIBaseURL``

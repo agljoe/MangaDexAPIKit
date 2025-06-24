@@ -17,7 +17,7 @@ internal struct GroupedMangaStatisticsEntity: MangaDexAPIEntity {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/statistics/manga"
         components.queryItems = ids.map( { URLQueryItem(name: "manga[]", value: $0.uuidString.lowercased()) })
         return components.url!

@@ -19,7 +19,7 @@ private struct ReadingStatusWrapper: Decodable {
 }
 
 /// A request that returns a string describing the reading status of a manga.
-public struct MangaReadingStatusRequest {
+public struct MangaReadingStatusRequest: MangaDexAPIRequest {
     /// The enitty whose reading status is being retrieved.
     fileprivate let entity: ReadingStatusEntity
     
@@ -34,14 +34,14 @@ public struct MangaReadingStatusRequest {
     }
 }
 
-extension MangaReadingStatusRequest: MangaDexAPIRequest {
-    public typealias ModelType = String
+public extension MangaReadingStatusRequest {
+    typealias ModelType = String
     
-    public func decode(_ data: Data) throws -> String {
+    func decode(_ data: Data) throws -> String {
         return try JSONDecoder().decode(ReadingStatusWrapper.self, from: data).status
     }
     
-    public func execute() async throws -> String {
+    func execute() async throws -> String {
         return try await authenticatedGet(from: self.entity.url)
     }
 }
@@ -63,7 +63,7 @@ public struct AllMangaReadingStatusRequest: MangaDexAPIRequest {
     public func execute() async throws -> [String : String] {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = Server.standard.rawValue
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/status"
         return try await authenticatedGet(from: components.url!)
     }

@@ -77,7 +77,7 @@ struct RandomMangaEntity: MangaDexAPIEntity, Expandable {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "api.mangadex.org"
+        components.host = MangaDexAPIBaseURL.org.rawValue
         components.path = "/manga/random"
         components.queryItems = expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)
