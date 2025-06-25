@@ -24,3 +24,20 @@ public protocol MangaDexAPIEntity: Sendable {
     /// Indicates if a user's access token will be passed in the Bearer(token) Authorization header.
     var requiresAuthentication: Bool { get }
 }
+
+/// A `MangaDexAPIEntity` that is a collection of JSON objects.
+///
+/// - Note: Some grouped requests are not consided lists.
+public protocol List: MangaDexAPIEntity {
+    /// The desired maximum size of the collection.
+    ///
+    /// The upper bound of this value may vary between endpoints, but its minimum
+    /// value is always 1.
+    var limit: Int { get }
+    
+    /// The number of items the returned collection is shifted from the first item in a collection found at a given endpoint.
+    ///
+    /// ### See
+    /// [Pagnation](https://api.mangadex.org/docs/01-concepts/pagination/)
+    var offset: Int { get }
+}

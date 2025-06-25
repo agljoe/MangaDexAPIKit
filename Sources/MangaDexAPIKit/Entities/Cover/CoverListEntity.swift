@@ -11,7 +11,7 @@ import Foundation
 ///
 /// Cover lists can be fetched with a list of manga UUIDs, cover UUIDs, or a mix
 /// of both.
-struct CoverListEntity: MangaDexAPIEntity, Expandable {
+struct CoverListEntity: Expandable, List {
     /// The UUIDs of the manga, whose covers are being retrieved.
     let mangaIDs: [UUID]?
     

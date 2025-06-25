@@ -8,7 +8,7 @@
 import Foundation
 
 /// An entity representing the necessary components for fetching the chapters of a specified manga.
-struct MangaFeedEntity: MangaDexAPIEntity, Expandable {
+struct MangaFeedEntity: Expandable, List {
     /// The UUID of the manga whose chapters are being retrieved.
     let id: UUID
     
@@ -21,10 +21,6 @@ struct MangaFeedEntity: MangaDexAPIEntity, Expandable {
     ///         or duplicates.
     let limit: Int
     
-    /// The number of chapters this collection is shifted from the latest chapter.
-    ///
-    /// ### See
-    /// [Pagnation](https://api.mangadex.org/docs/01-concepts/pagination/)
     let offset: Int
     
     let expansions: [ChapterReferenceExpansion]

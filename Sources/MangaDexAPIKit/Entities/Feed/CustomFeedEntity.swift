@@ -8,7 +8,7 @@
 import Foundation
 
 /// An entity representing the necessary components for fetching chapters for a specifed custom manga feed.
-struct CustomFeedEntity: MangaDexAPIEntity, Expandable {
+struct CustomFeedEntity: Expandable, List {
     /// The UUID of the custom feed to fetch from.
     let id: UUID
     

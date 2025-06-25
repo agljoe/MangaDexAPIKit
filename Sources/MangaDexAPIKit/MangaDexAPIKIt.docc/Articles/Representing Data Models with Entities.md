@@ -15,7 +15,8 @@ Entities represent their endpoint specific details including available query par
 - ``Wrapper``
 - ``Response``
 
-### Retrieving Single Values
+### Being Requestable
 
 - ``MangaDexAPIEntity``
+- ``List``
 

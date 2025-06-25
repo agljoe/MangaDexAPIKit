@@ -8,7 +8,6 @@
 import DequeModule
 import Foundation
 
-
 /// A rate limiter that ensures the number of requests made by the `MangaDexAPIRequestManger` does not exceed the specified rate limits.
 ///
 /// This implementation is provided by the [swift-package-manager](https://github.com/swiftlang/swift-package-manager/blob/main/Sources/Basics/Concurrency/TokenBucket.swift).
@@ -53,10 +52,13 @@ public actor TokenBucket: Sendable {
     
     /// Performs some asynchronous work as soon as a token is available, if there is none execution is suspended until there is one.
     ///
+    /// To enforce the global rate limit of approximately 5 requests a second this function delays the execute of its work for a fifth of a second.
+    ///
     /// - Parameter body: a closure that is invoked when a token is available.
     ///
     /// - Returns: the result of the body closure.
     public func withToken<T: Sendable>(_ body: @Sendable () async throws -> T) async rethrows -> T {
+        Task { try await Task.sleep(for: .milliseconds(200)) }
         await self.getToken()
         defer { self.returnToken() }
         return try await body()

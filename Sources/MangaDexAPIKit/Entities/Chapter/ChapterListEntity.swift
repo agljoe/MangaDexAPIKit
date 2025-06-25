@@ -8,17 +8,12 @@
 import Foundation
 
 /// An entity representing the necessary components for fetching a specifed collection of chapters.
-struct ChapterListEntity: MangaDexAPIEntity, Expandable {
+struct ChapterListEntity: Expandable, List {
     /// The UUIDs of the chapters being retrieved.
     let ids: [UUID]
     
-    /// The maximum size of the collection to be tetched, must be in range 0...100.
     let limit: Int
     
-    /// The number of items the returned collection is shifted from the first item when this value is zero.
-    ///
-    /// ### See
-    /// [Pagnation](https://api.mangadex.org/docs/01-concepts/pagination/)
     let offset: Int
     
     /// The direction of the sorted collection.

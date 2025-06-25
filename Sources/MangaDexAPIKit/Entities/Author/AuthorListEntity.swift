@@ -12,17 +12,12 @@ import Foundation
 /// The returned data will be an array of `Author`
 ///
 /// - Note: This enpoint can aslo fetch a list of artists, or mixed list of authors and artists.
-struct AuthorListEntity: MangaDexAPIEntity, Expandable {
+struct AuthorListEntity: Expandable, List {
     /// The ids of all authors being retrieved..
     let ids: [UUID]
     
-    /// The maximum size of the collection to be fetched, must be in range 0...100.
     let limit: Int
     
-    /// The number of items the returned collection is shifted from the first item when this value is zero.
-    ///
-    /// ### See
-    /// [Pagnation](https://api.mangadex.org/docs/01-concepts/pagination/)
     let offset: Int
     
     /// The direction the returned collection is sorted in.

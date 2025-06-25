@@ -35,7 +35,7 @@ public struct ReauthenticationRequest: MangaDexAPIRequest {
     /// - Throws: `AuthenticationError.invalidCredentials`  if a users credentials or refresh token cannot be properly encoded, or passed to the MangaDex API.
     private func reAuthenticate() async throws {
         let token = try KeychainManager.getToken(.refresh)
-        guard let user = UserDefaults.standard.string(forKey: "loggenInUser") else { return }
+        guard let user = UserDefaults.standard.string(forKey: "loggedInUser") else { return }
         
         let credentials = try KeychainManager.get(credentials: user)
         
@@ -43,6 +43,7 @@ public struct ReauthenticationRequest: MangaDexAPIRequest {
         
         let data = try await post(at: entity.url, forContentType: "application/x-www-form-urlencoded", with: content)
         let result = try decode(data)
+        print(result)
         try KeychainManager.update(token: result.access, .access, for: credentials.username)
     }
 }

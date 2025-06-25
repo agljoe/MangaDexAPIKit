@@ -8,7 +8,7 @@
 import Foundation
 
 /// An entity representing the necesary components for fetching chapters from a user's followed manga feed.
-struct FollowedFeedEntity: MangaDexAPIEntity, Expandable {
+struct FollowedFeedEntity: Expandable, List {
     /// The maximum size of the returned collection, must be in range 0...500.
     let limit: Int
     
@@ -65,8 +65,8 @@ struct FollowedFeedEntity: MangaDexAPIEntity, Expandable {
             })
         }
         
-        if let exclucedOriginalLanuage = UserDefaults.standard.array(forKey: "excludedOriginalLanguage") as? [String] {
-            components.queryItems?.append(contentsOf: exclucedOriginalLanuage.map {
+        if let excludedOriginalLanuage = UserDefaults.standard.array(forKey: "excludedOriginalLanguage") as? [String] {
+            components.queryItems?.append(contentsOf: excludedOriginalLanuage.map {
                 URLQueryItem(name: "excludedOriginalLanguage[]", value: $0)
             })
         }
@@ -81,13 +81,16 @@ struct FollowedFeedEntity: MangaDexAPIEntity, Expandable {
             })
         }
         
-        if let excludedUploades = UserDefaults.standard.array(forKey: "excludedUploaders") as? [String] {
-            components.queryItems?.append(contentsOf: excludedUploades.map {
+        if let excludedUploaders = UserDefaults.standard.array(forKey: "excludedUploaders") as? [String] {
+            components.queryItems?.append(contentsOf: excludedUploaders.map {
                 URLQueryItem(name: "excludedUploaders[]", value: $0)
             })
         }
         
+        /// - Note: this weird ordering/ formating is just to stay in the same order that parameters are listed in the official documentation, which makes it
+        ///         easier for me to read.
         components.queryItems?.append(contentsOf: [
+            URLQueryItem(name: "includeFutureUpdates", value: "\(1)"),
             URLQueryItem(name: "order[publishAt]", value: Order.desc.rawValue),
             URLQueryItem(name: "order[chapter]", value: Order.desc.rawValue)
         ])
@@ -95,6 +98,11 @@ struct FollowedFeedEntity: MangaDexAPIEntity, Expandable {
         components.queryItems?.append(contentsOf: expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)
         })
+        
+        components.queryItems?.append(contentsOf: [
+            URLQueryItem(name: "includeExternalUrl", value: "\(1)"),
+            URLQueryItem(name: "includeUnavailable", value: "0")
+        ])
         
         print(components.url!)
         

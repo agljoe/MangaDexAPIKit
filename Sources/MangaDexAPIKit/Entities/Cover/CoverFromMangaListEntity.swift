@@ -8,17 +8,13 @@
 import Foundation
 
 /// Same as a MangaListEntity, with the goal of fetching a list of covers.
-struct CoverFromMangaListEntity: MangaDexAPIEntity, Expandable {
+struct CoverFromMangaListEntity: Expandable, List {
     /// The UUIDs of the manga whose covers are being retrieved.
     let ids: [UUID]
     
     /// The maximum size of the returned collection, must be in range 0...100.
     let limit: Int
     
-    /// The number of items the returned collection is shifted from the first item when this value is zero.
-    ///
-    /// ### See
-    /// [Pagnation](https://api.mangadex.org/docs/01-concepts/pagination/)
     let offset: Int
     
     let expansions: [MangaReferenceExpansion] = [.cover, .author, .artist, .creator]

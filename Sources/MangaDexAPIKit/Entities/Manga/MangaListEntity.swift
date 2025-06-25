@@ -8,17 +8,12 @@
 import Foundation
 
 /// An entity representing the compontents needed to fetch a collection of specified manga.
-struct MangaListEntity: MangaDexAPIEntity, Expandable {
+struct MangaListEntity: Expandable, List {
     /// The UUIDs of the manga being retrieved..
     let ids: [UUID]
     
-    /// The maximum size of the returned collection, must be in range 0...100
     let limit: Int
     
-    /// The number of items the returned collection is shifted from the first item when this value is zero.
-    ///
-    /// ### See
-    /// [Pagnation](https://api.mangadex.org/docs/01-concepts/pagination/)
     let offset: Int
     
     /// The direction the returned collection is sorted in.
