@@ -53,7 +53,7 @@ fileprivate func isExpectedCollectionSize(_ entity: any List, limit: Int, offset
         #expect(entity.ids.count == 10)
         #expect(isExpectedCollectionSize(entity, limit: entity.ids.count, offset: 0))
         
-        var parameters = [URLQueryItem]()
+        var parameters: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(10)"), URLQueryItem(name: "offset", value: "\(0)")]
         parameters.append(contentsOf: ids.map { URLQueryItem(name: "ids[]", value: $0.uuidString.lowercased()) })
         parameters.append(URLQueryItem(name: "order[name]", value: Order.desc.rawValue))
         
@@ -72,3 +72,43 @@ fileprivate func isExpectedCollectionSize(_ entity: any List, limit: Int, offset
     }
 
 }
+
+/// A collection of creational tests for the `ChapterEntity` and `ChapterListEntity` types.
+@Suite struct ChapterEntityTests {
+    @Test func create() {
+        let id = UUID()
+        let entity = ChapterEntity(id: id)
+        #expect(entity.url.relativePath == "/chapter/\(id.uuidString.lowercased())")
+        #expect(entity.url.queryItems == [ChapterReferenceExpansion].all.map{
+            URLQueryItem(name: "includes[]", value: $0.rawValue)
+        })
+    }
+    
+    @Test func createList() {
+        let ids: [UUID] = Array(repeating: UUID(), count: 10)
+        let entity = ChapterListEntity.init(ids: ids)
+        
+        #expect(entity.ids.count == 10)
+        #expect(isExpectedCollectionSize(entity, limit: 10, offset: 0))
+        
+        var parameters: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(10)"), URLQueryItem(name: "offset", value: "\(0)")]
+        parameters.append(contentsOf: ids.map { URLQueryItem(name: "ids[]", value: $0.uuidString.lowercased()) })
+        parameters.append(contentsOf: [URLQueryItem(name: "translatedLanguage[]", value: "en"), URLQueryItem(name: "order[name]", value: Order.desc.rawValue)])
+        parameters.append(contentsOf: [ChapterReferenceExpansion].all.map { URLQueryItem(name: "includes[]", value: $0.rawValue) })
+        
+        #expect(entity.url.queryItems == parameters)
+    }
+}
+
+
+
+
+/// Turns out this doesn't work because passing closures causes a fatal error.
+/// If you're interested you can check out the [Swift forurms thread](https://forums.swift.org/t/fatal-error-internal-inconsistency-no-test-reporter-for-test-case-argumentids/75666)
+/// that contains other weird Swift testing errors.
+//@Suite struct Test {
+//    @Test(arguments: [AuthorEntity.init])
+//    func create(_ init: (UUID) -> any MangaDexAPIEntity) {
+//        
+//    }
+//}

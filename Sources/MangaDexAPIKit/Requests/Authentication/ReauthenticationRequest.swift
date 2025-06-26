@@ -43,7 +43,6 @@ public struct ReauthenticationRequest: MangaDexAPIRequest {
         
         let data = try await post(at: entity.url, forContentType: "application/x-www-form-urlencoded", with: content)
         let result = try decode(data)
-        print(result)
         try KeychainManager.update(token: result.access, .access, for: credentials.username)
     }
 }

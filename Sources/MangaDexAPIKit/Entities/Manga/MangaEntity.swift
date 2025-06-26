@@ -45,7 +45,7 @@ struct MangaEntity: MangaDexAPIEntity, Expandable {
     
     typealias ModelType = Manga
     
-    var expansions: [MangaReferenceExpansion] = [.manga, .cover, .author, .artist, .creator]
+    let expansions: [MangaReferenceExpansion] = [.manga, .cover, .author, .artist, .creator]
     
     var url: URL {
         var components = URLComponents()

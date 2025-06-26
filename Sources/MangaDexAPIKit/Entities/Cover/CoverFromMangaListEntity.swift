@@ -58,7 +58,7 @@ struct CoverFromMangaListEntity: Expandable, List {
         }
         
         components.queryItems?.append(contentsOf: expansions.map {
-            URLQueryItem(name: "includes", value: $0.rawValue)
+            URLQueryItem(name: "includes[]", value: $0.rawValue)
         })
         
         return components.url!

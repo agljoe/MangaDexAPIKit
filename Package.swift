@@ -13,23 +13,23 @@ let package = Package(
             targets: ["MangaDexAPIKit"]),
     ],
     dependencies: [
-       .package(
-         url: "https://github.com/apple/swift-collections.git",
-         .upToNextMinor(from: "1.2.0") // or `.upToNextMajor
-       ),
-       .package(
-        url: "https://github.com/apple/swift-docc-plugin",
-        from: "1.1.0"
-       )
-     ],
+        .package(
+            url: "https://github.com/apple/swift-collections.git",
+            .upToNextMinor(from: "1.2.0") // or `.upToNextMajor
+        ),
+        .package(
+            url: "https://github.com/apple/swift-docc-plugin",
+            from: "1.1.0"
+        )
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "MangaDexAPIKit",
             dependencies: [
-                   .product(name: "Collections", package: "swift-collections")
-                 ]
+                .product(name: "Collections", package: "swift-collections")
+            ]
         ),
         .testTarget(
             name: "MangaDexAPIKitTests",

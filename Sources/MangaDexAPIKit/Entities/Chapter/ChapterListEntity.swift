@@ -114,6 +114,10 @@ struct ChapterListEntity: Expandable, List {
         }
         
         components.queryItems?.append(URLQueryItem(name: "order[name]", value: self.order.rawValue))
+        
+        components.queryItems?.append(contentsOf: expansions.map {
+            URLQueryItem(name: "includes[]", value: $0.rawValue)
+        })
 
         return components.url!
     }

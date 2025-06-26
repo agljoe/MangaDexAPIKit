@@ -90,9 +90,7 @@ struct FollowedFeedEntity: Expandable, List {
         /// - Note: this weird ordering/ formating is just to stay in the same order that parameters are listed in the official documentation, which makes it
         ///         easier for me to read.
         components.queryItems?.append(contentsOf: [
-            URLQueryItem(name: "includeFutureUpdates", value: "\(1)"),
-            URLQueryItem(name: "order[publishAt]", value: Order.desc.rawValue),
-            URLQueryItem(name: "order[chapter]", value: Order.desc.rawValue)
+            URLQueryItem(name: "order[publishAt]", value: Order.desc.rawValue)
         ])
         
         components.queryItems?.append(contentsOf: expansions.map {
@@ -100,11 +98,9 @@ struct FollowedFeedEntity: Expandable, List {
         })
         
         components.queryItems?.append(contentsOf: [
-            URLQueryItem(name: "includeExternalUrl", value: "\(1)"),
+            URLQueryItem(name: "includeExternalUrl", value: "1"),
             URLQueryItem(name: "includeUnavailable", value: "0")
         ])
-        
-        print(components.url!)
         
         return components.url!
     }
