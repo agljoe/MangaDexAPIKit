@@ -10,7 +10,7 @@
 
 - ``MangaDexAPIClient/getManga(_:)->Result<Manga,Error>``
 - ``MangaDexAPIClient/getManga(_:)-46lz8``
-- ``MangaDexAPIClient/getManga(_:limit:offset:)``
+- ``MangaDexAPIClient/getManga(_:limit:offset:filters:)``
 - ``MangaDexAPIClient/getRandomManga()``
 
 ### Getting the Chapters for a Manga

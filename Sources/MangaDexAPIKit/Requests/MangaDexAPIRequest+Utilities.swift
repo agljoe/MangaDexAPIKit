@@ -17,7 +17,7 @@ extension MangaDexAPIRequest {
         
         let RFC3339DateFormatter = DateFormatter()
         RFC3339DateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        RFC3339DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        RFC3339DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         RFC3339DateFormatter.timeZone = TimeZone.current
         decoder.dateDecodingStrategy = .formatted(RFC3339DateFormatter)
         

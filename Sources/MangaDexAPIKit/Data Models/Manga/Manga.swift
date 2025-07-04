@@ -68,7 +68,7 @@ public struct Manga: Decodable, Equatable, Hashable, Identifiable, Sendable {
     public let chapterNumbersResetOnNewVolume: Bool
     
     /// A collection of languages a manga has been translated to.
-    public let availableTranslatedLanguages: [String?]
+    public let availableTranslatedLanguages: [String]
     
     /// The most recent chapter of a manga.
     public let latestUploadedChapter: UUID?
@@ -150,7 +150,7 @@ public struct Manga: Decodable, Equatable, Hashable, Identifiable, Sendable {
         self.updatedAt = try attributesContainer.decode(Date.self, forKey: .updatedAt)
         
         self.version = try attributesContainer.decode(Int.self, forKey: .version)
-        self.availableTranslatedLanguages = try attributesContainer.decodeIfPresent([String?].self, forKey: .availableTranslatedLanguages) ?? []
+        self.availableTranslatedLanguages = try attributesContainer.decodeIfPresent([String].self, forKey: .availableTranslatedLanguages) ?? []
         self.latestUploadedChapter = try attributesContainer.decodeIfPresent(UUID.self, forKey: .latestUploadedChapter)
         
         var authors: [Author?] = []

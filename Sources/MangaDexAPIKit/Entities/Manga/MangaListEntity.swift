@@ -9,8 +9,8 @@ import Foundation
 
 /// An entity representing the compontents needed to fetch a collection of specified manga.
 struct MangaListEntity: Expandable, List {
-    /// The UUIDs of the manga being retrieved..
-    let ids: [UUID]
+    /// The UUIDs of the manga being retrieved.
+    let ids: [UUID]?
     
     let limit: Int
     
@@ -41,7 +41,7 @@ struct MangaListEntity: Expandable, List {
     ///
     /// - Returns: a newly created `MangaListEntity`.
     init(
-        ids: [UUID],
+        ids: [UUID]?,
         limit: Int = 10,
         offset: Int = 0,
         order: Order = Order.desc,
@@ -98,9 +98,11 @@ struct MangaListEntity: Expandable, List {
             URLQueryItem(name: "offset", value: "\(self.offset)")
         ]
         
-        components.queryItems?.append(contentsOf: ids.map {
-            URLQueryItem(name: "ids[]", value: $0.uuidString.lowercased())
-        })
+        if let manga = ids {
+            components.queryItems?.append(contentsOf: manga.map {
+                URLQueryItem(name: "ids[]", value: $0.uuidString.lowercased())
+            })
+        }
         
         if let queryItems = self.queryItems {
             components.queryItems?.append(contentsOf: queryItems)

@@ -62,16 +62,20 @@ public extension MangaDexAPIClient {
     ///     - ids: the UUIDs of the manga being retrieved.
     ///     - limit: the maximum number of manga to retrieve.
     ///     - offset: an amount to shift the retrieved collection's index.
+    ///     - filters: a an arrary of `URLQueryItems` used to seach for manga.
     ///
     /// - Returns: a `Result` containing an array of manga, the size of the collection, and its offset,
     ///            any errors that occured during the get operation.
     func getManga(
-        _ ids: [UUID],
+        _ ids: [UUID]?,
         limit: Int? = nil,
-        offset: Int? = nil
+        offset: Int? = nil,
+        filters: [URLQueryItem]? = nil
     ) async -> Result<([Manga], Int, Int), Error> {
-        guard ids.count > 0 && ids.count <= 100 else {
-            return .failure(MangaDexAPIError.badRequest(context: "The number of requested manga must be between 1 and 100."))
+        if let ids = ids {
+            guard ids.count > 0 && ids.count <= 100 else {
+                return .failure(MangaDexAPIError.badRequest(context: "The number of requested manga must be between 1 and 100."))
+            }
         }
         
         if let limit = limit, limit < 0 || limit > 100 {
@@ -83,8 +87,9 @@ public extension MangaDexAPIClient {
                 try await ListRequest<MangaListEntity>(
                     .init(
                         ids: ids,
-                        limit: limit ?? ids.count,
-                        offset: offset ?? 0
+                        limit: (limit ?? ids?.count) ?? 100,
+                        offset: offset ?? 0,
+                        queryItems: filters
                     )
                 ).execute()
             }
@@ -109,13 +114,15 @@ public extension MangaDexAPIClient {
     ///     - manga: the UUID of the manga whose chapters are being retrieved.
     ///     - limit: the maximum number of chapters to retrieve, 100 by default.
     ///     - offset:  an amount to shift the retrieved collection's index.
+    ///     - queryParameters: a collection of filters for the fetched collection.
     ///
     /// - Returns: a `Result` containing an array of chapters, the total size of the collection, and its offset,
     ///            or any errors that occured during the get operation.
     func getChapters(
         for manga: UUID,
         limit: Int? = nil,
-        offset: Int? = nil
+        offset: Int? = nil,
+        filteredBy queryParameters: [URLQueryItem] = []
     ) async -> Result<([Chapter], Int, Int), Error> {
         if let limit = limit, limit < 0 || limit > 100 {
             return .failure(MangaDexAPIError.badRequest(context: "The number of requested chapters must be between 1 and 100."))
@@ -127,7 +134,8 @@ public extension MangaDexAPIClient {
                     .init(
                         id: manga,
                         limit: limit ?? 100,
-                        offset: offset ?? 0
+                        offset: offset ?? 0,
+                        parameters: queryParameters
                     )
                 ).execute()
             }
@@ -136,10 +144,12 @@ public extension MangaDexAPIClient {
     
     /// Retrieves all available chapters for a specified manga.
     ///
-    /// - Parameter manga: the UUID of the manga whose chapters are being retrieved.
+    /// - Parameters
+    ///     - manga: the UUID of the manga whose chapters are being retrieved.
+    ///     - queryParameters: a collection of filters for the fetched collection.
     ///
     /// - Returns: a `Result` containing an array of chapters, or any errors that occured during the get operation.
-    func getAllChapters(for manga: UUID) async -> Result<[Chapter], Error> {
+    func getAllChapters(for manga: UUID, filteredBy queryParameters: [URLQueryItem] = []) async -> Result<[Chapter], Error> {
         var lastTotal = 0
         
         var result = [Chapter]()
@@ -152,7 +162,8 @@ public extension MangaDexAPIClient {
                         .init(
                             id: manga,
                             limit: 100,
-                            offset: offset
+                            offset: offset,
+                            parameters: queryParameters
                         )
                     ).execute()
                 }

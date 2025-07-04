@@ -25,6 +25,9 @@ struct MangaFeedEntity: Expandable, List {
     
     let expansions: [ChapterReferenceExpansion]
     
+    /// Addition filters to apply to this query.
+    let queryParameters: [URLQueryItem]
+    
     /// Creates a new instance with the specified UUID.
     ///
     /// - Parameters:
@@ -38,12 +41,14 @@ struct MangaFeedEntity: Expandable, List {
         id: UUID,
         limit: Int = 100,
         offset: Int = 0,
-        expansions: [ChapterReferenceExpansion] = .all
+        expansions: [ChapterReferenceExpansion] = .all,
+        parameters: [URLQueryItem] = []
     ) {
         self.id = id
         self.limit = limit
         self.offset = offset
         self.expansions = expansions
+        self.queryParameters = parameters
     }
     
     typealias ModelType = [Chapter]
@@ -78,11 +83,18 @@ struct MangaFeedEntity: Expandable, List {
             })
         }
         
-        components.queryItems?.append(URLQueryItem(name: "order[chapter]", value: Order.desc.rawValue))
+        components.queryItems?.append(contentsOf: [
+            URLQueryItem(name: "order[updateAt]", value: Order.desc.rawValue),
+            URLQueryItem(name: "order[chapter]", value: Order.desc.rawValue)
+        ])
         
         components.queryItems?.append(contentsOf: expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)
         })
+        
+        if !queryParameters.isEmpty {
+            components.queryItems?.append(contentsOf: queryParameters)
+        }
         
         return components.url!
     }
