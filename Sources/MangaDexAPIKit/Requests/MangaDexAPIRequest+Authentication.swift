@@ -73,9 +73,9 @@ extension MangaDexAPIRequest {
     /// only way to make OAuth requests.
     ///
     /// - Parameters:
-    ///     - url: the url for a specific sever.
-    ///     - value: a string specifying the value for the `Content-Type` header field.
-    ///     - content: an encoded data value passed to a specific server as the request's body.
+    ///   - url: the url for a specific sever.
+    ///   - value: a string specifying the value for the `Content-Type` header field.
+    ///   - content: an encoded data value passed to a specific server as the request's body.
     ///
     /// - Important: The caller is responsible for encoding the data in the correct format, ensure that the data you are passing is correctly configured for the specified server.
     ///

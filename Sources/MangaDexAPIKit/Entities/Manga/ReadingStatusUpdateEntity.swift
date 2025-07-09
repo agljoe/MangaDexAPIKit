@@ -18,8 +18,8 @@ struct ReadingStatusUpdate: Encodable {
     /// Creates a new instance with the given values.
     ///
     /// - Parameters:
-    ///     - id: the UUID of a manga.
-    ///     - status: a `ReadingStatus`.
+    ///   - id: the UUID of a manga.
+    ///   - status: a `ReadingStatus`.
     ///
     ///  - Returns: a newly created `ReadingStatusUpdate` for the given manga.
     init(

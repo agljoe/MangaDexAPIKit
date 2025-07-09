@@ -26,11 +26,11 @@ struct RandomMangaEntity: MangaDexAPIEntity, Expandable {
     /// Creates a new instance with the given tag filters, defaults both tag modes to `AND`.
     ///
     /// - Parameters:
-    ///     - includedTags: The tags to include with this query.
-    ///     - includedTagsMode: How the included tags are applied to the query.
-    ///     - excludedTags: The tags excluded by this query.
-    ///     - excludedTagsMode: How the excluded tags are applied to the query.
-    ///     - expansions: the references to expand the data of.
+    ///   - includedTags: The tags to include with this query.
+    ///   - includedTagsMode: How the included tags are applied to the query.
+    ///   - excludedTags: The tags excluded by this query.
+    ///   - excludedTagsMode: How the excluded tags are applied to the query.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `RandomMangaEntity`.
     init(
@@ -50,11 +50,11 @@ struct RandomMangaEntity: MangaDexAPIEntity, Expandable {
     /// Convience initializer that accpects a variadic list of UUIDs.
     ///
     /// - Parameters:
-    ///      - includedTags: The tags to include with this query.
-    ///      - includedTagsMode: How the included tags are applied to the query.
-    ///     - excludedTags: The tags excluded by this query.
-    ///     - excludedTagsMode: How the excluded tags are applied to the query.
-    ///     - expansions: the references to expand the data of.
+    ///   - includedTags: The tags to include with this query.
+    ///   - includedTagsMode: How the included tags are applied to the query.
+    ///   - excludedTags: The tags excluded by this query.
+    ///   - excludedTagsMode: How the excluded tags are applied to the query.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created` RandomMangaEntity`.
     init(

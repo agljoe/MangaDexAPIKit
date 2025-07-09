@@ -26,11 +26,11 @@ struct ChapterListEntity: Expandable, List {
     /// Creates a new instance with the given ids.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some chapters to fetch.
-    ///     - limit: the number of chapters to fetch, 10 by default.
-    ///     - offset: :the starting index of the colleciton, 0 by default.
-    ///     - order: the direction of this collection's sort.
-    ///     - expansions: the references to expand the data of.
+    ///   - ids: the UUIDs of some chapters to fetch.
+    ///   - limit: the number of chapters to fetch, 10 by default.
+    ///   - offset: :the starting index of the colleciton, 0 by default.
+    ///   - order: the direction of this collection's sort.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `ChapterListEntity`.
     init(
@@ -38,7 +38,7 @@ struct ChapterListEntity: Expandable, List {
         limit: Int = 10,
         offset: Int = 0,
         order: Order = Order.desc,
-        expansions: [ChapterReferenceExpansion] = .all
+        expansions: [ChapterReferenceExpansion] = [.scanlationGroup, .user]
     ) {
         self.ids = ids
         self.limit = limit
@@ -50,11 +50,11 @@ struct ChapterListEntity: Expandable, List {
     /// Convience initializer that accpects a variadic list of UUIDs.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some chapters to fetch.
-    ///     - limit: the number of chapters to fetch, 10 by default.
-    ///     - offset: the starting index of the colleciton, 0 by default.
-    ///     - order: the direction of this collection's sort.
-    ///     - expansions: the references to expand the data of.
+    ///   - ids: the UUIDs of some chapters to fetch.
+    ///   - limit: the number of chapters to fetch, 10 by default.
+    ///   - offset: the starting index of the colleciton, 0 by default.
+    ///   - order: the direction of this collection's sort.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `ChapterListEntity`.
     init(
@@ -62,7 +62,7 @@ struct ChapterListEntity: Expandable, List {
         limit: Int = 10,
         offset: Int = 0,
         order: Order = Order.desc,
-        expansions: [ChapterReferenceExpansion] = .all
+        expansions: [ChapterReferenceExpansion] = [.scanlationGroup, .user]
     ) {
         self.init(
             ids: ids,

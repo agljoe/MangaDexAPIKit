@@ -93,8 +93,8 @@ public actor KeychainManager {
     /// Stores a token associated with an account, and its type.
     ///
     /// - Parameters:
-    ///     - token: a `Token` value.
-    ///     - user: the username of the account associated with this token.
+    ///   - token: a `Token` value.
+    ///   - user: the username of the account associated with this token.
     ///
     /// - Throws: a `KeychainError.unexpectedTokenData` if the given token could not be encrypted.
     /// - Throws: a `KeychainError.unhandledError` if the given token could not be stored in the keychain.
@@ -216,9 +216,9 @@ public actor KeychainManager {
     /// Updates the value of a token in Keychain.
     ///
     /// - Parameters:
-    ///     - token: the value of an OAuth token.
-    ///     - type: the type for a given token.
-    ///     - account: the user associated with a token.
+    ///   - token: the value of an OAuth token.
+    ///   - type: the type for a given token.
+    ///   - account: the user associated with a token.
     ///
     ///
     /// - Throws: `KeyhchainError.noToken` if no associated token is found.

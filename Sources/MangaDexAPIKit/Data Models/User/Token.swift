@@ -38,8 +38,8 @@ public struct Token: Codable, Hashable, Sendable {
     /// Create a Token value given a specified access.
     ///
     /// - Parameters:
-    ///     - access: a token value that is used for OAuth authenticated API calls.
-    ///     - refresh: a token value that is used to aquire a new access token.
+    ///   - access: a token value that is used for OAuth authenticated API calls.
+    ///   - refresh: a token value that is used to aquire a new access token.
     ///
     /// - Returns: a newly created Token initialized to the given values.
     public init(

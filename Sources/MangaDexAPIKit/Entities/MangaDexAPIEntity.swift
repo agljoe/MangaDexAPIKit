@@ -27,7 +27,7 @@ public protocol MangaDexAPIEntity: Sendable {
 
 /// A `MangaDexAPIEntity` that is a collection of JSON objects.
 ///
-/// - Note: Some grouped requests are not consided lists.
+/// - Note: Some grouped requests are not considered lists.
 public protocol List: MangaDexAPIEntity {
     /// The desired maximum size of the collection.
     ///

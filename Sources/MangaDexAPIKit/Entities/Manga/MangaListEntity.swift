@@ -32,12 +32,12 @@ struct MangaListEntity: Expandable, List {
     /// Creates a new instance with the given ids.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some manga to fetch.
-    ///     - limit: the number of chapters to fetch, 10 by default.
-    ///     - offset: : the starting index of the colleciton, 0 by default.
-    ///     - order: the direction of this collection's sort.
-    ///     - queryItems: additional URLQuery items used when searching for manga.
-    ///     - expansions: the references to expand the data of.
+    ///   - ids: the UUIDs of some manga to fetch.
+    ///   - limit: the number of chapters to fetch, 10 by default.
+    ///   - offset: : the starting index of the colleciton, 0 by default.
+    ///   - order: the direction of this collection's sort.
+    ///   - queryItems: additional URLQuery items used when searching for manga.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `MangaListEntity`.
     init(
@@ -59,12 +59,12 @@ struct MangaListEntity: Expandable, List {
     /// Convience initializer that accpects a variadic list of UUIDs.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some manga to fetch.
-    ///     - limit: the number of chapters to fetch, 10 by default.
-    ///     - offset: : the starting index of the colleciton, 0 by default.
-    ///     - order: the direction of this collection's sort.
-    ///     - queryItems: additional URLQuery items used when searching for manga.
-    ///     - expansions: the references to expand the data of.
+    ///   - ids: the UUIDs of some manga to fetch.
+    ///   - limit: the number of chapters to fetch, 10 by default.
+    ///   - offset: : the starting index of the colleciton, 0 by default.
+    ///   - order: the direction of this collection's sort.
+    ///   - queryItems: additional URLQuery items used when searching for manga.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `MangaListEntity`.
     init(

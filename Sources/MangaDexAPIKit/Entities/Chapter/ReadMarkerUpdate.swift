@@ -26,9 +26,9 @@ struct ReadMarkerUpdate: Encodable, Sendable {
     /// Creates a new `ReadMarkerUpdate` instance for the specified values.
     ///
     /// - Parameters:
-    ///  - mangaID: the UUID of the manga whose chapter read markers are being updated.
-    ///  - chapterIdsRead: an arrary of chapter UUID strings whose read markers are being set to read.
-    ///  - chapterIdsUnread:  an arrary of chapter UUID strings whose read markers are being set to unread.
+    ///   - mangaID: the UUID of the manga whose chapter read markers are being updated.
+    ///   - chapterIdsRead: an arrary of chapter UUID strings whose read markers are being set to read.
+    ///   - chapterIdsUnread:  an arrary of chapter UUID strings whose read markers are being set to unread.
     ///
     /// - Returns: a newly created `ReadMarkerUpdate` initalized to the given values..
     public init(
@@ -44,9 +44,9 @@ struct ReadMarkerUpdate: Encodable, Sendable {
     /// Creates a new `ReadMarkerUpdate` instance for the specified values.
     ///
     /// - Parameters:
-    ///  - mangaID: the UUID of the manga whose chapter read markers are being updated.
-    ///  - chapterIdsRead: an arrary of chapter UUIDs whose read markers are being set to read.
-    ///  - chapterIdsUnread:  an arrary of chapter UUIDs whose read markers are being set to unread.
+    ///   - mangaID: the UUID of the manga whose chapter read markers are being updated.
+    ///   - chapterIdsRead: an arrary of chapter UUIDs whose read markers are being set to read.
+    ///   - chapterIdsUnread:  an arrary of chapter UUIDs whose read markers are being set to unread.
     ///
     /// - Returns: a newly created `ReadMarkerUpdate` initalized to the given values..
     public init(

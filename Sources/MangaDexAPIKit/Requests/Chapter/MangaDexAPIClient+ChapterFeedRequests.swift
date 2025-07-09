@@ -12,9 +12,9 @@ public extension MangaDexAPIClient {
     /// Retrieves a list of the most recently updated chapters for all manga in the specified MDList.
     ///
     /// - Parameters:
-    ///     - id: the UUID  of the MDList to fetch chapters from.
-    ///     - limit: the maximum number of chapters to retrieve.
-    ///     - offset: an amount to shift the retrieved collection's index.
+    ///   - id: the UUID  of the MDList to fetch chapters from.
+    ///   - limit: the maximum number of chapters to retrieve.
+    ///   - offset: an amount to shift the retrieved collection's index.
     ///
     /// - Returns: A `Result` containing an array of chapters, the size of the collection, and its offset,
     ///            or any errors that occured during the get operation..
@@ -43,8 +43,8 @@ public extension MangaDexAPIClient {
     /// Retrieves a list of the most recently updated chapters for all manga followed by a user.
     ///
     /// - Parameters:
-    ///     - limit: the maximum number of chapters to retrieve.
-    ///     - offset: an amount to shift the retrieved collection's index.
+    ///   - limit: the maximum number of chapters to retrieve.
+    ///   - offset: an amount to shift the retrieved collection's index.
     ///
     /// - Returns: A `Result` containing an array of chapters, the size of the collection, and its offset,
     ///            or any errors that occured during the get operation.

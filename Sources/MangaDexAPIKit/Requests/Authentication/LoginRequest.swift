@@ -23,8 +23,8 @@ public struct LoginRequest: MangaDexAPIRequest {
     /// Creates a new login request for the given credentials
     ///
     /// - Parameters:
-    ///     - credentials: The credentials to be used to login.
-    ///     - entity: the entity to be fetched by this request, initialized by default.
+    ///   - credentials: The credentials to be used to login.
+    ///   - entity: the entity to be fetched by this request, initialized by default.
     ///
     /// - Returns: a newly created LoginRequest for the given credentials.
     init(credentials: Credentials, entity: TokenEntity = TokenEntity()) {

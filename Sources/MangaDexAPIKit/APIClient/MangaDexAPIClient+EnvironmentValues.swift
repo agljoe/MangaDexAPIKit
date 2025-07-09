@@ -17,6 +17,10 @@ public extension EnvironmentValues {
 /// `@Environment(\.apiClient) var mangaDexAPIClient`
 public extension View {
     /// Creates a view with a `MangaDexAPIRequestManager` evironment value.
+    ///
+    /// - Parameter apiClient: any object that conforms to `MangaDexAPIClient`.
+    ///
+    /// - Returns: a view that can access an API client through its environment values.
     func apiClient(_ apiClient: MangaDexAPIClient) -> some View {
         environment(\.apiClient, apiClient)
     }

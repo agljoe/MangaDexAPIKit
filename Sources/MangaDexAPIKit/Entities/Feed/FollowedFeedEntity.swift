@@ -23,9 +23,9 @@ struct FollowedFeedEntity: Expandable, List {
     /// Creates a new instance with default values.
     ///
     /// - Parameters:
-    ///     - limit: the number of chapters to fetch, 100 by default.
-    ///     - offset: the starting index of the colleciton, 0 by default.
-    ///     - expansions: the references to expand the data of.
+    ///   - limit: the number of chapters to fetch, 100 by default.
+    ///   - offset: the starting index of the colleciton, 0 by default.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `FollowedFeedEntity`.
     init(

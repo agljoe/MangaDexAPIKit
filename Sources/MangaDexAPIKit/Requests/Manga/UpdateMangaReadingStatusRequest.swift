@@ -15,12 +15,15 @@ public struct UpdateMangaReadingStatusRequest: MangaDexAPIRequest {
     /// Creates a new instance with the given values.
     ///
     /// - Parameters:
-    ///  - id: the UUID of a manga.
-    ///  - status: a `ReadingStatus`.
+    ///   - id: the UUID of a manga.
+    ///   - status: a `ReadingStatus`.
     ///
     /// - Returns: a newly created `UpdateReadingStatusRequest` whose status has bee initalized
     ///            by the given values.
-    init(for id: UUID, to status: ReadingStatus) {
+    init(
+        for id: UUID,
+        to status: ReadingStatus
+    ) {
         self.status = .init(id: id, status: status)
     }
 }

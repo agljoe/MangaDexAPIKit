@@ -25,9 +25,9 @@ public extension MangaDexAPIClient {
     /// Retrieves the cover with the given IDs.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some cover.
-    ///     - limit: the maximum amount of covers to retrieve, up to 100 per request.
-    ///     - offset: an amount to shift the retrieved collection's index.
+    ///   - ids: the UUIDs of some cover.
+    ///   - limit: the maximum amount of covers to retrieve, up to 100 per request.
+    ///   - offset: an amount to shift the retrieved collection's index.
     ///
     /// - Returns: A `Result` containing an array of covers, the total size of the collection, and its offset,
     ///            or any errors that occured during the get operation.
@@ -61,9 +61,9 @@ public extension MangaDexAPIClient {
     /// Retrieves all covers for the given manga.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some manga.
-    ///     - limit: the maximum amount of covers to retrieve, up to 100 per request.
-    ///     - offset: an amount to shift the retrieved collection's index.
+    ///   - ids: the UUIDs of some manga.
+    ///   - limit: the maximum amount of covers to retrieve, up to 100 per request.
+    ///   - offset: an amount to shift the retrieved collection's index.
     ///
     /// - Returns: a `Result` containing an array of covers, the total size of the collection, and its offset,
     ///            or any errors that occured during the get operation.
@@ -96,9 +96,9 @@ public extension MangaDexAPIClient {
     /// Retrieves the latest covers for the given manga.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some manga.
-    ///     - limit: the maximum amount of covers to retrieve, up to 100 per request.
-    ///     - offset: an amount to shift the retrieved collection's index.
+    ///   - ids: the UUIDs of some manga.
+    ///   - limit: the maximum amount of covers to retrieve, up to 100 per request.
+    ///   - offset: an amount to shift the retrieved collection's index.
     ///
     /// - Returns: a `Result` containing an array of cover, manga UUID pairs, or
     ///            any errors that occured during the get operation.

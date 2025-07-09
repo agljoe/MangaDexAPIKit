@@ -59,9 +59,9 @@ public extension MangaDexAPIClient {
     /// Retrieves the chapters with the given IDs.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of the chapters to fetch.
-    ///     - limit: the maximum amount of chapters to retrieve, up to 100 per request.
-    ///     - offset: an amount to shift the retrieved collection's index.
+    ///   - ids: the UUIDs of the chapters to fetch.
+    ///   - limit: the maximum amount of chapters to retrieve, up to 100 per request.
+    ///   - offset: an amount to shift the retrieved collection's index.
     ///
     /// - Returns: a `Result` containing an array of chapters, the total size of the collection, and its offset,
     ///            or any errors that occured during the get operation.

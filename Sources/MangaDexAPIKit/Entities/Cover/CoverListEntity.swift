@@ -35,11 +35,11 @@ struct CoverListEntity: Expandable, List {
     /// Creates a new instance for some given manga, or  cover ids.
     ///
     /// - Parameters:
-    ///     - mangaIDs: the UUIDs of some manga whose covers to fetch.
-    ///     - coverIDs: the UUIDs of the covers to fetch
-    ///     - limit: the number of covers to fetch,
-    ///     - offset: the starting index of the colleciton  be fetch, 0 by default.
-    ///     - expansions: the references to expand the data of.
+    ///   - mangaIDs: the UUIDs of some manga whose covers to fetch.
+    ///   - coverIDs: the UUIDs of the covers to fetch
+    ///   - limit: the number of covers to fetch,
+    ///   - offset: the starting index of the colleciton  be fetch, 0 by default.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `CoverListEntity`.
     init(
@@ -59,11 +59,11 @@ struct CoverListEntity: Expandable, List {
     /// Convience initializer that accpects a variadic list of UUIDs.
     ///
     /// - Parameters:
-    ///     - mangaIDs: the UUIDs of some manga whose covers to fetch.
-    ///     - coverIDs: the UUIDs of the covers to fetch
-    ///     - limit: the number of covers to fetch,
-    ///     - offset: the starting index of the colleciton to be fetched, 0 by default.
-    ///     - expansions: the references to expand the data of.
+    ///   - mangaIDs: the UUIDs of some manga whose covers to fetch.
+    ///   - coverIDs: the UUIDs of the covers to fetch
+    ///   - limit: the number of covers to fetch,
+    ///   - offset: the starting index of the colleciton to be fetched, 0 by default.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created` CoverListEntity`.
     init(

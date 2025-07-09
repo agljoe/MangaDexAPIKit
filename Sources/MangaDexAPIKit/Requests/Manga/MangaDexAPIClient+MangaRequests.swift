@@ -59,10 +59,10 @@ public extension MangaDexAPIClient {
     /// Retrieves the magna with the spcified UUIDs.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of the manga being retrieved.
-    ///     - limit: the maximum number of manga to retrieve.
-    ///     - offset: an amount to shift the retrieved collection's index.
-    ///     - filters: a an arrary of `URLQueryItems` used to seach for manga.
+    ///   - ids: the UUIDs of the manga being retrieved.
+    ///   - limit: the maximum number of manga to retrieve.
+    ///   - offset: an amount to shift the retrieved collection's index.
+    ///   - filters: a an arrary of `URLQueryItems` used to seach for manga.
     ///
     /// - Returns: a `Result` containing an array of manga, the size of the collection, and its offset,
     ///            any errors that occured during the get operation.
@@ -111,10 +111,10 @@ public extension MangaDexAPIClient {
     /// Retrieves upto 100 chapters of a given manga.
     ///
     /// - Parameters:
-    ///     - manga: the UUID of the manga whose chapters are being retrieved.
-    ///     - limit: the maximum number of chapters to retrieve, 100 by default.
-    ///     - offset:  an amount to shift the retrieved collection's index.
-    ///     - queryParameters: a collection of filters for the fetched collection.
+    ///   - manga: the UUID of the manga whose chapters are being retrieved.
+    ///   - limit: the maximum number of chapters to retrieve, 100 by default.
+    ///   - offset:  an amount to shift the retrieved collection's index.
+    ///   - queryParameters: a collection of filters for the fetched collection.
     ///
     /// - Returns: a `Result` containing an array of chapters, the total size of the collection, and its offset,
     ///            or any errors that occured during the get operation.
@@ -124,8 +124,8 @@ public extension MangaDexAPIClient {
         offset: Int? = nil,
         filteredBy queryParameters: [URLQueryItem] = []
     ) async -> Result<([Chapter], Int, Int), Error> {
-        if let limit = limit, limit < 0 || limit > 100 {
-            return .failure(MangaDexAPIError.badRequest(context: "The number of requested chapters must be between 1 and 100."))
+        if let limit = limit, limit < 0 || limit > 50 {
+            return .failure(MangaDexAPIError.badRequest(context: "The number of requested chapters must be between 1 and 500."))
         }
         
         return await Task {
@@ -133,7 +133,7 @@ public extension MangaDexAPIClient {
                 try await ListRequest<MangaFeedEntity>(
                     .init(
                         id: manga,
-                        limit: limit ?? 100,
+                        limit: limit ?? 500,
                         offset: offset ?? 0,
                         parameters: queryParameters
                     )
@@ -144,31 +144,34 @@ public extension MangaDexAPIClient {
     
     /// Retrieves all available chapters for a specified manga.
     ///
-    /// - Parameters
-    ///     - manga: the UUID of the manga whose chapters are being retrieved.
-    ///     - queryParameters: a collection of filters for the fetched collection.
+    /// - Parameters:
+    ///   - manga: the UUID of the manga whose chapters are being retrieved.
+    ///   - queryParameters: a collection of filters for the fetched collection.
     ///
     /// - Returns: a `Result` containing an array of chapters, or any errors that occured during the get operation.
     func getAllChapters(for manga: UUID, filteredBy queryParameters: [URLQueryItem] = []) async -> Result<[Chapter], Error> {
-        var lastTotal = 0
+        var (result, _, lastTotal): ([Chapter], Int, Int)
+        do {
+            (result, _, lastTotal) = try await getChapters(for: manga, filteredBy: queryParameters).get()
+        } catch let error {
+            return .failure(error)
+        }
+    
         
-        var result = [Chapter]()
-        
-        while(lastTotal >= 100) {
+        while(lastTotal >= 500) {
             do {
-                let offset = lastTotal
-                async let (chapters, _, total) = self.withRateLimit {
+                let (chapters, _, total) = try await self.withRateLimit {
                     try await ListRequest<MangaFeedEntity>(
                         .init(
                             id: manga,
-                            limit: 100,
-                            offset: offset,
+                            limit: 500,
+                            offset: 500,
                             parameters: queryParameters
                         )
                     ).execute()
                 }
-                result.append(contentsOf: try await chapters)
-                lastTotal = try await total
+                result.append(contentsOf: chapters)
+                lastTotal = total
             } catch let error {
                 return .failure(error)
             }

@@ -39,9 +39,9 @@ public extension MangaDexAPIClient {
     /// Sets the read markers of the chapers for the specified manga.
     ///
     /// - Parameters:
-    ///     - mangaID: the UUID of the manga the given chapters belong to.
-    ///     - readChapters: the chapters whose read markers will be set to read.
-    ///     - unreadChapters: the chapters whose read markers will be set to undread.
+    ///   - mangaID: the UUID of the manga the given chapters belong to.
+    ///   - readChapters: the chapters whose read markers will be set to read.
+    ///   - unreadChapters: the chapters whose read markers will be set to undread.
     ///
     /// - Returns: a `Result` containing an optional `Result` or any errors that occured during the post operation.
     @discardableResult

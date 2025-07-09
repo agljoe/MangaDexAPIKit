@@ -15,9 +15,9 @@ public struct UpdateReadMarkerRequest: MangaDexAPIRequest {
     /// Creates a new instance with the given values.
     ///
     /// - Parameters:
-    ///      - mangaID: the UUID of a manga.
-    ///     - chapterIdsRead: the UUID strings of the chapters to mark  "read".
-    ///     - chatperIds: the UUID strings of the chapters to mark "unread".
+    ///   - mangaID: the UUID of a manga.
+    ///   - chapterIdsRead: the UUID strings of the chapters to mark  "read".
+    ///   - chatperIds: the UUID strings of the chapters to mark "unread".
     ///
     /// - Returns: a newly created `UpdateReadMarkerRequest` whose markers have been initalized with the given values.
     init(
@@ -35,9 +35,9 @@ public struct UpdateReadMarkerRequest: MangaDexAPIRequest {
     /// Creates a new instance with the given values.
     ///
     /// - Parameters:
-    ///     - mangaID: the UUID of a manga.
-    ///     - chapterIdsRead: the UUIDs of the chapters to mark  "read".
-    ///     - chatperIds: the UUIDs of the chapters to mark "unread".
+    ///   - mangaID: the UUID of a manga.
+    ///   - chapterIdsRead: the UUIDs of the chapters to mark  "read".
+    ///   - chatperIds: the UUIDs of the chapters to mark "unread".
     ///
     /// - Returns: a newly created `UpdateReadMarkerRequest` whose markers have been initalized with the given values.
     init(

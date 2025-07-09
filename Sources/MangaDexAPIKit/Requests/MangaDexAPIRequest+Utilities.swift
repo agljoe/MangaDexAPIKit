@@ -17,7 +17,7 @@ extension MangaDexAPIRequest {
         
         let RFC3339DateFormatter = DateFormatter()
         RFC3339DateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        RFC3339DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        RFC3339DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         RFC3339DateFormatter.timeZone = TimeZone.current
         decoder.dateDecodingStrategy = .formatted(RFC3339DateFormatter)
         
@@ -29,8 +29,8 @@ extension MangaDexAPIRequest {
 extension MangaDexAPIRequest {
     /// Maps an `HTTPRespsonse` to the associated `MangaDexAPIError`
     /// - Parameters:
-    ///     - response: an `HTTPURLResponse`
-    ///     - context: a string describing the context in which the error happened
+    ///   - response: an `HTTPURLResponse`
+    ///   - context: a string describing the context in which the error happened
     ///
     /// - Returns: an associated `MangaDexAPIError`.
     func mapError(_ response: HTTPURLResponse, context: String) -> MangaDexAPIError {
@@ -85,9 +85,9 @@ extension MangaDexAPIRequest {
     /// Performs an HTTP POST request at a server for the given `url`.
     ///
     /// - Parameters:
-    ///     - url: the url for a specific server.
-    ///     - value: a string specifiying the value of the `Content-Type` header field.
-    ///     - content: an encoded data value passed to a specified server as the request's body.
+    ///   - url: the url for a specific server.
+    ///   - value: a string specifiying the value of the `Content-Type` header field.
+    ///   - content: an encoded data value passed to a specified server as the request's body.
     ///
     /// - Important: The caller is responsible for encoding the data in the correct format, ensure the data being passed is correctly configured for the specified server.
     ///

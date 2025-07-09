@@ -15,9 +15,16 @@ import Foundation
 ///
 /// For more information see [Personal Clients](https://api.mangadex.org/docs/02-authentication/personal-clients/).
 public struct Credentials: Codable, Hashable, Sendable {
+    /// A non-unique identifier given to a user.
     public var username: String
+    
+    /// A key that authenticates a user session.
     public var password: String
+    
+    /// A unique identifier given to a program that interacts with the MangaDexAPI.
     public var client_id: String
+    
+    /// A key that allows an API client to access authenticated endpoints.
     public var client_secret: String
     
     /// Creates a ``Credentials`` instance initialized with placeholder values.
@@ -33,10 +40,10 @@ public struct Credentials: Codable, Hashable, Sendable {
     /// Creates a ``Credentials`` instance initalized to the given values.
     ///
     /// - Parameters:
-    ///     - username: a username.
-    ///     - password: a password.
-    ///     - client_id: an identifier for a MangaDexAPI client.
-    ///     - client_secret: a key used to authenticate a MangaDexAPI client.
+    ///   - username: a username.
+    ///   - password: a password.
+    ///   - client_id: an identifier for a MangaDexAPI client.
+    ///   - client_secret: a key used to authenticate a MangaDexAPI client.
     ///
     ///  - Returns: a newly created `Credentials` instance initialized with the given values.
     public init(username: String, password: String, client_id: String, client_secret: String) {

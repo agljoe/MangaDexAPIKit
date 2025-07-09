@@ -31,17 +31,17 @@ struct MangaFeedEntity: Expandable, List {
     /// Creates a new instance with the specified UUID.
     ///
     /// - Parameters:
-    ///     - id:  the UUID of the manga whose chapters being fetched.
-    ///     - limit: the number of chapters to fetch.
-    ///     - offset: the chapter number this collection will start at.
-    ///     - expansions: the references to expand the data of.
+    ///   - id:  the UUID of the manga whose chapters being fetched.
+    ///   - limit: the number of chapters to fetch.
+    ///   - offset: the chapter number this collection will start at.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created` MangaFeedEntity` for the given feed UUID.
     init(
         id: UUID,
         limit: Int = 100,
         offset: Int = 0,
-        expansions: [ChapterReferenceExpansion] = .all,
+        expansions: [ChapterReferenceExpansion] = [.scanlationGroup, .user],
         parameters: [URLQueryItem] = []
     ) {
         self.id = id
@@ -71,7 +71,7 @@ struct MangaFeedEntity: Expandable, List {
             components.queryItems?.append(URLQueryItem(name: "translatedLanguage[]", value: "en"))
         }
         
-        if let excludedGroups = UserDefaults.standard.array(forKey: "excludedGroupd") as? [String] {
+        if let excludedGroups = UserDefaults.standard.array(forKey: "excludedGroups") as? [String] {
             components.queryItems?.append(contentsOf: excludedGroups.map {
                 URLQueryItem(name: "excludedGroups[]", value: $0)
             })
@@ -84,7 +84,7 @@ struct MangaFeedEntity: Expandable, List {
         }
         
         components.queryItems?.append(contentsOf: [
-            URLQueryItem(name: "order[updateAt]", value: Order.desc.rawValue),
+            URLQueryItem(name: "order[updatedAt]", value: Order.desc.rawValue),
             URLQueryItem(name: "order[chapter]", value: Order.desc.rawValue)
         ])
         

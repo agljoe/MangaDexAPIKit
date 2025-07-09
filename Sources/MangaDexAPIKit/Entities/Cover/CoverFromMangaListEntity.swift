@@ -22,9 +22,9 @@ struct CoverFromMangaListEntity: Expandable, List {
     /// Creates a new instance with the specified ids.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of some manga whose covers are to be fetched.
-    ///     - limit: the number of covers to fetch, 10 be default.
-    ///     - offset: the starting index of the collection to be fetched, 0 by default.
+    ///   - ids: the UUIDs of some manga whose covers are to be fetched.
+    ///   - limit: the number of covers to fetch, 10 be default.
+    ///   - offset: the starting index of the collection to be fetched, 0 by default.
     ///
     /// - Returns: a newly created CoverFromMangaListEntity.
     init(

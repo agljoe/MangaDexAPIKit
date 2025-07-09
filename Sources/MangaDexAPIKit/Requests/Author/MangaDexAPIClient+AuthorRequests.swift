@@ -58,13 +58,12 @@ public extension MangaDexAPIClient{
     /// Retrieves the authors or artists with the given IDs.
     ///
     /// - Parameters:
-    ///     - ids: the UUIDs of the authors or artists to fetch..
-    ///     - limit: the maximum amount of authors or artists to retrieve, up to 100 per request.
-    ///     - offset: an amount to shift the retrieved collection's index.
+    ///   - ids: the UUIDs of the authors or artists to fetch..
+    ///   - limit: the maximum amount of authors or artists to retrieve, up to 100 per request.
+    ///   - offset: an amount to shift the retrieved collection's index.
     ///
     /// - Returns: a `Result` containing an array of authors or artists, the total size of the collection, and its offset, or any
     ///            errors that occured during the get operation.
-    ///
     func getAuthors(
         _ ids: [UUID],
         limit: Int? = nil,

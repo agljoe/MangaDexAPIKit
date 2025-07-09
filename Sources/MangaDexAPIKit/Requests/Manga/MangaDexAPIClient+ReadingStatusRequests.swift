@@ -38,8 +38,8 @@ public extension MangaDexAPIClient {
     /// Sets the reading status for a given manga.
     ///
     /// - Parameters:
-    ///     - manga: the UUID of a manga.
-    ///     - status: the status that given manga will be updated to.
+    ///   - manga: the UUID of a manga.
+    ///   - status: the status that given manga will be updated to.
     ///
     /// - Returns: a `Result` conatining a response if the specifed manga's reading status was successfully updated,
     ///            or any errors that occured during the post operation.

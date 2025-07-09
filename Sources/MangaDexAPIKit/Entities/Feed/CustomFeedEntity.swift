@@ -26,10 +26,10 @@ struct CustomFeedEntity: Expandable, List {
     /// Creates a new instance with the given UUID.
     ///
     /// - Parameters:
-    ///     - id: the UUID of the feed to fetch from.
-    ///     - limit: the number of chapters to fetch, 100 by default.
-    ///      - offset: the starting index of the colleciton, 0 by default.
-    ///      - expansions: the references to expand the data of.
+    ///   - id: the UUID of the feed to fetch from.
+    ///   - limit: the number of chapters to fetch, 100 by default.
+    ///   - offset: the starting index of the colleciton, 0 by default.
+    ///   - expansions: the references to expand the data of.
     ///
     /// - Returns: a newly created `CustomFeedEnttiy` for the given custom feed UUID.
     init(
