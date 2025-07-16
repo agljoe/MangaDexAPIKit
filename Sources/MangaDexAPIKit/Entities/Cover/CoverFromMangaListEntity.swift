@@ -15,7 +15,14 @@ struct CoverFromMangaListEntity: Expandable, List {
     /// The maximum size of the returned collection, must be in range 0...100.
     let limit: Int
     
+    /// The number of items the returned collection is shifted from the first item when this value is zero.
+    ///
+    /// ### See
+    /// [Pagnation](https://api.mangadex.org/docs/01-concepts/pagination/)
     let offset: Int
+    
+    /// The language of any text on a cover.
+    let locale: String?
     
     let expansions: [MangaReferenceExpansion] = [.cover, .author, .artist, .creator]
     
@@ -25,16 +32,19 @@ struct CoverFromMangaListEntity: Expandable, List {
     ///   - ids: the UUIDs of some manga whose covers are to be fetched.
     ///   - limit: the number of covers to fetch, 10 be default.
     ///   - offset: the starting index of the collection to be fetched, 0 by default.
+    ///   - locale: a language code.
     ///
     /// - Returns: a newly created CoverFromMangaListEntity.
     init(
         ids: [UUID],
         limit: Int = 10,
-        offset: Int = 0
+        offset: Int = 0,
+        locale: String? = nil
     ) {
         self.ids = ids
         self.limit = limit
         self.offset = offset
+        self.locale = locale
     }
     
     typealias ModelType = [Cover]
@@ -60,6 +70,10 @@ struct CoverFromMangaListEntity: Expandable, List {
         components.queryItems?.append(contentsOf: expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)
         })
+        
+        if let locale = locale {
+            components.queryItems?.append(URLQueryItem(name: "locales[]", value: locale))
+        }
         
         return components.url!
     }

@@ -28,6 +28,7 @@ public extension MangaDexAPIClient {
     ///   - ids: the UUIDs of some cover.
     ///   - limit: the maximum amount of covers to retrieve, up to 100 per request.
     ///   - offset: an amount to shift the retrieved collection's index.
+    ///   - locale: a language code.
     ///
     /// - Returns: A `Result` containing an array of covers, the total size of the collection, and its offset,
     ///            or any errors that occured during the get operation.
@@ -35,7 +36,8 @@ public extension MangaDexAPIClient {
     func getCovers(
         coverIDs ids: [UUID],
         limit: Int? = nil,
-        offset: Int? = nil
+        offset: Int? = nil,
+        locale: String? = nil
     ) async -> Result<([Cover], Int, Int), Error>  {
         guard ids.count > 0 && ids.count <= 100 else {
             return .failure(MangaDexAPIError.badRequest(context: "The number of requested covers must be between 1 and 100."))
@@ -51,7 +53,8 @@ public extension MangaDexAPIClient {
                     .init(
                         coverIDs: ids,
                         limit: limit ?? 10,
-                        offset: offset ?? 0
+                        offset: offset ?? 0,
+                        locale: locale
                     )
                 ).execute()
             }
@@ -64,13 +67,15 @@ public extension MangaDexAPIClient {
     ///   - ids: the UUIDs of some manga.
     ///   - limit: the maximum amount of covers to retrieve, up to 100 per request.
     ///   - offset: an amount to shift the retrieved collection's index.
+    ///   - locale: a language code.
     ///
     /// - Returns: a `Result` containing an array of covers, the total size of the collection, and its offset,
     ///            or any errors that occured during the get operation.
     func getCovers(
         mangaIDs ids: [UUID],
         limit: Int? = nil,
-        offset: Int? = nil
+        offset: Int? = nil,
+        locale: String? = nil
     ) async -> Result<([Cover], Int, Int), Error>  {
         guard ids.count > 0 && ids.count <= 100 else {
             return .failure(MangaDexAPIError.badRequest(context: "The number of requested covers must be between 1 and 100"))
@@ -86,7 +91,8 @@ public extension MangaDexAPIClient {
                     .init(
                         mangaIDs: ids,
                         limit: limit ?? 10,
-                        offset: offset ?? 0
+                        offset: offset ?? 0,
+                        locale: locale
                     )
                 ).execute()
             }
@@ -99,13 +105,15 @@ public extension MangaDexAPIClient {
     ///   - ids: the UUIDs of some manga.
     ///   - limit: the maximum amount of covers to retrieve, up to 100 per request.
     ///   - offset: an amount to shift the retrieved collection's index.
+    ///   - locale: a language code.
     ///
     /// - Returns: a `Result` containing an array of cover, manga UUID pairs, or
     ///            any errors that occured during the get operation.
     func getCovers(
         for ids: [UUID],
         limit: Int? = nil,
-        offset: Int? = nil
+        offset: Int? = nil,
+        locale: String? = nil
     ) async -> Result<[(Cover, UUID)], Error> {
         guard ids.count > 0 && ids.count <= 100 else {
             return .failure(MangaDexAPIError.badRequest(context: "The number of requested covers must be between 1 and 100"))
@@ -121,7 +129,8 @@ public extension MangaDexAPIClient {
                     .init(
                         ids: ids,
                         limit: limit ?? ids.count,
-                        offset: offset ?? 0
+                        offset: offset ?? 0,
+                        locale: locale
                     )
                 ).execute()
             }

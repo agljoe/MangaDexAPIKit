@@ -18,6 +18,9 @@ struct CoverListEntity: Expandable, List {
     /// The UUIDs of the covers being retrieved.
     let coverIDs: [UUID]?
     
+    /// The language of any text on a cover.
+    let locale: String?
+    
     /// The maximum size of the returned collection, must be in range 0...100
     ///
     /// - Note: The MangaDexAPI will return all available covers for all manga IDs passed with a request
@@ -40,6 +43,7 @@ struct CoverListEntity: Expandable, List {
     ///   - limit: the number of covers to fetch,
     ///   - offset: the starting index of the colleciton  be fetch, 0 by default.
     ///   - expansions: the references to expand the data of.
+    ///   - locale: a language code.
     ///
     /// - Returns: a newly created `CoverListEntity`.
     init(
@@ -47,13 +51,15 @@ struct CoverListEntity: Expandable, List {
         coverIDs: [UUID]? = nil,
         limit: Int = 10,
         offset: Int = 0,
-        expansions: [CoverReferenceExpansion] = .none
+        expansions: [CoverReferenceExpansion] = .none,
+        locale: String? = nil
     ) {
         self.mangaIDs = mangaIDs
         self.coverIDs = coverIDs
         self.limit = limit
         self.offset = offset
         self.expansions = expansions
+        self.locale = locale
     }
     
     /// Convience initializer that accpects a variadic list of UUIDs.
@@ -64,6 +70,7 @@ struct CoverListEntity: Expandable, List {
     ///   - limit: the number of covers to fetch,
     ///   - offset: the starting index of the colleciton to be fetched, 0 by default.
     ///   - expansions: the references to expand the data of.
+    ///   - locale: a lanuage code.
     ///
     /// - Returns: a newly created` CoverListEntity`.
     init(
@@ -71,14 +78,16 @@ struct CoverListEntity: Expandable, List {
         coverIDs: UUID...,
         limit: Int = 10,
         offset: Int = 0,
-        expansions: [CoverReferenceExpansion] = .none
+        expansions: [CoverReferenceExpansion] = .none,
+        locale: String? = nil
     ) {
         self.init(
             mangaIDs: mangaIDs,
             coverIDs: coverIDs,
             limit: limit,
             offset: offset,
-            expansions: expansions
+            expansions: expansions,
+            locale: locale
         )
     }
     
@@ -112,6 +121,10 @@ struct CoverListEntity: Expandable, List {
         components.queryItems?.append(contentsOf: expansions.map {
             URLQueryItem(name: "includes[]", value: $0.rawValue)
         })
+        
+        if let locale = locale {
+            components.queryItems?.append(URLQueryItem(name: "locales[]", value: locale))
+        }
         
         return components.url!
     }
