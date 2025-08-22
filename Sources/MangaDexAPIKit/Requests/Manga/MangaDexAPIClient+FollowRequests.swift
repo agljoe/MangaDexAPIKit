@@ -29,6 +29,7 @@ public extension MangaDexAPIClient {
     ///
     /// - Returns: a `Result` indicating if the specified manga was successfully followed,
     ///            or any errors that occured during the post operation.
+    @discardableResult
     func follow(manga id: UUID) async -> Result<Response, Error> {
         await Task {
             try await self.withRateLimit {
@@ -43,6 +44,7 @@ public extension MangaDexAPIClient {
     ///
     /// - Returns: a `Result` indicating if the specified manga was successfully unfollowed,
     ///            or any errors that occured during the delete operation.
+    @discardableResult
     func unfollow(manga id: UUID) async -> Result<Response, Error> {
         await Task {
             try await self.withRateLimit {

@@ -140,6 +140,14 @@ public struct MangaStatistics: Statistics {
             }
         }
     }
+    
+    /// The total number of ratings for a given manga.
+    ///
+    /// - Returns: the sum of the values of the `distribution` dictionary.
+    public func totalRatings() -> Int {
+        guard let distribution else { return 0 }
+        return distribution.values.reduce(0, +)
+    }
 }
 
 public extension MangaStatistics {
